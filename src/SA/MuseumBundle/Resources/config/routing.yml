@@ -20,17 +20,9 @@ sa_museum_add:
     defaults:
         _controller: SAMuseumBundle:Booking:add
 
-sa_museum_edit:
-    path:     /edit/{id}
-    defaults:
-      _controller: SAMuseumBundle:Booking:edit
-    requirements:
-      id: \d+
 
-sa_museum_delete:
-    path:     /delete/{id}
+sa_museum_infos:
+    path:     /infos
     defaults:
-      _controller: SAMuseumBundle:Booking:delete
-    requirements:
-      id: \d+
+        _controller: SAMuseumBundle:Default:infos
 
