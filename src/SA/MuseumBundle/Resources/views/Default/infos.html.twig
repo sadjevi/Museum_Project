@@ -1,25 +1,35 @@
-<h2>Informations utiles à la reservation</h2>
+{% extends "SAMuseumBundle::layout.html.twig" %}
 
-<h3>comment effectuer une réservation</h3>
 
-Il existe 2 types de billets :
-<ul>
-    <li> Un billet « Journée » </li>
-    <li> Un billet « Demi-journée » ( ne permettant de rentrer qu’à partir de 14h00).</li>
-</ul>
+{% block title %}  Infos - {{ parent() }}
+{% endblock %}
 
-Le musée est ouvert tous les jours sauf le mardi <br/>
-<strong> Fermetures exceptionnelles:</strong> 1er mai, 1er novembre et 25 décembre.
+{% block projectmuseum_body %}
 
-Plusieurs types de tarifs sont proposées:
-<ul>
-    <li>Un tarif « normal »  dès 12 ans à 16 €</li>
-    <li>Un tarif « enfant »  de 4 à 12 ans, à 8 € (l’entrée est gratuite pour les enfants
-        de moins de 4 ans)</li>
-    <li>Un tarif « senior » dès 60 ans pour 12 €</li>
-    <li>Un tarif « réduit » de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service
-        du Ministère de la Culture, militaire…)</li>
-</ul>
+    <h3>Informations utiles à la reservation</h3>
 
-Le site récupèrera par ailleurs l’e-mail du visiteur afin de lui envoyer les billets.
-Il ne sera donc pas nécéssaire de créer un compte pour commander.
+    <h4>comment effectuer une réservation</h4>
+
+    Il existe 2 types de billets :
+    <ul>
+        <li> Un billet « Journée » </li>
+        <li> Un billet « Demi-journée » ( ne permettant de rentrer qu’à partir de 14h00).</li>
+    </ul>
+
+    Le musée est ouvert tous les jours sauf le mardi <br/>
+    <strong> Fermetures exceptionnelles:</strong> 1er mai, 1er novembre et 25 décembre.
+
+    Plusieurs types de tarifs sont proposées:
+    <ul>
+        <li>Un tarif « normal »  dès 12 ans à 16 €</li>
+        <li>Un tarif « enfant »  de 4 à 12 ans, à 8 € (l’entrée est gratuite pour les enfants
+            de moins de 4 ans)</li>
+        <li>Un tarif « senior » dès 60 ans pour 12 €</li>
+        <li>Un tarif « réduit » de 10 € accordé dans certaines conditions (étudiant, employé du musée, d’un service
+            du Ministère de la Culture, militaire…)</li>
+    </ul>
+
+    Le site récupèrera par ailleurs l’e-mail du visiteur afin de lui envoyer les billets.
+    Il ne sera donc pas nécéssaire de créer un compte pour commander.
+
+{% endblock %}

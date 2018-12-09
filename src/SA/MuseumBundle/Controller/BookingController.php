@@ -35,6 +35,8 @@ class BookingController extends Controller
         return $this->render('SAPlatformBundle:Booking:add.html.twig');
     }
 
+
+
     /*public function editAction($id, Request $request)
     {
         // Ici, on récupérera la resa correspondante à $id

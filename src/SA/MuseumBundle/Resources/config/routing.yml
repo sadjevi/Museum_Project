@@ -1,12 +1,9 @@
 
 
 sa_museum_homepage:
-    path:     /{page}
+    path:     /
     defaults:
         _controller: SAMuseumBundle:Default:index
-        page:        1
-    requirements:
-        page: \d*
 
 sa_museum_view:
     path:     /booking/{id}

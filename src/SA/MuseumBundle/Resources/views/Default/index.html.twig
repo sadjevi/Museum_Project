@@ -1,17 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bienvenue au musée du louvre !</title>
-    </head>
-    <body>
-        <h1>Bienvenue au Musée du Louvre</h1>
+{% extends "SAMuseumBundle::layout.html.twig" %}
 
-        <p>
 
-        vous vous apprêtez à visiter le plus grand musée du monde, fréquenté chaque année par près de 10 millions de visiteurs, dont la mission principale est d’assurer la conservation, l’éducation et la transmission d’un patrimoine aux générations futures. Pour vous permettre de profiter au mieux de votre visite, dans le respect des collections et des autres visiteurs, nous vous proposons de découvrir ici ce qu’est le Louvre et comment vous pouvez nous aider à préserver les collections qu’il abrite.
-        Le palais et le musée
-        À l’origine simple forteresse défensive, le Louvre a longtemps été l’une des principales résidences des rois de France. Devenu musée en 1793, il présente sur plus de 73 000 m² les œuvres de l’art occidental du Moyen Âge à 1848, ainsi que des civilisations antiques qui l’ont précédé et influencé. Environ 35 000 œuvres d’art y sont exposées, dont les plus anciennes remontent à plus de sept mille ans. Les collections du musée sont réparties dans huit départements : le département des Antiquités égyptiennes, le département des Antiquités grecques, étrusques et romaines, le département des Antiquités orientales, le département des Arts de l’Islam, le département des Peintures, le département des Sculptures, le département des Objets d’art et le département des Arts graphiques. Pour aller plus loin, vous pouvez consulter : . l’histoire du Louvre: de 1190 à nos jours, l’histoire du Louvre a été riche et mouvementée. . les bases de données : plusieurs bases de données vous permettent d’explorer les collections du musée. . la programmation de l’auditorium du Louvre : situé sous la pyramide, l’auditorium propose une programmation variée, de septembre à juillet, pour tous types de publics : conférences et colloques, concerts, films, cours d’histoire de l’art… Vous pouvez découvrir la programmation en cours dans la rubrique Expositions & Actualités.
+{% block title %}  Home - {{ parent() }}
+{% endblock %}
 
-        </p>
-    </body>
-</html>
+{% block projectmuseum_body %}
+
+    <h4>Le musée du louvre</h4>
+    vous vous apprêtez à visiter le plus grand musée du monde, fréquenté chaque année
+    par près de 10 millions de visiteurs, dont la mission principale est d’assurer la conservation, l’éducation
+    et la transmission d’un patrimoine aux générations futures.
+    Pour vous permettre de profiter au mieux de votre visite, dans le respect des collections et des autres visiteurs,
+    nous vous proposons de découvrir ici ce qu’est le Louvre et comment vous pouvez nous aider
+    à préserver les collections qu’il abrite.
+
+    <h4>Le palais et le musée</h4>
+    À l’origine simple forteresse défensive, le Louvre a longtemps été
+    l’une des principales résidences des rois de France.
+    Devenu musée en 1793, il présente sur plus de 73 000 m² les œuvres de l’art occidental du Moyen Âge à 1848,
+    ainsi que des civilisations antiques qui l’ont précédé et influencé. Environ 35 000 œuvres d’art y sont exposées,
+    dont les plus anciennes remontent à plus de sept mille ans.
+    Les collections du musée sont réparties dans huit départements : le département des Antiquités égyptiennes,
+    le département des Antiquités grecques, étrusques et romaines, le département des Antiquités orientales,
+    le département des Arts de l’Islam, le département des Peintures, le département des Sculptures,
+    le département des Objets d’art et le département des Arts graphiques.
+    Pour aller plus loin, vous pouvez consulter :
+    . l’histoire du Louvre: de 1190 à nos jours, l’histoire du Louvre a été riche et mouvementée.
+    . les bases de données : plusieurs bases de données vous permettent d’explorer les collections du musée.
+    . la programmation de l’auditorium du Louvre : situé sous la pyramide, l’auditorium propose une programmation variée,
+    de septembre à juillet, pour tous types de publics : conférences et colloques, concerts, films, cours d’histoire
+    de l’art…
+    Vous pouvez découvrir la programmation en cours dans la rubrique Expositions & Actualités.
+
+{% endblock %}
