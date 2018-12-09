@@ -1,3 +1,36 @@
+
+
 sa_museum_homepage:
-    path:     /
-    defaults: { _controller: SAMuseumBundle:Default:index }
+    path:     /{page}
+    defaults:
+        _controller: SAMuseumBundle:Default:index
+        page:        1
+    requirements:
+        page: \d*
+
+sa_museum_view:
+    path:     /booking/{id}
+    defaults:
+        _controllet: SAMuseumBundle:Booking:view
+    requirements:
+      id: \d+
+
+sa_museum_add:
+    path:     /add
+    defaults:
+        _controller: SAMuseumBundle:Booking:add
+
+sa_museum_edit:
+    path:     /edit/{id}
+    defaults:
+      _controller: SAMuseumBundle:Booking:edit
+    requirements:
+      id: \d+
+
+sa_museum_delete:
+    path:     /delete/{id}
+    defaults:
+      _controller: SAMuseumBundle:Booking:delete
+    requirements:
+      id: \d+
+
