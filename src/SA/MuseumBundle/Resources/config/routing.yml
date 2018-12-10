@@ -8,9 +8,8 @@ sa_museum_homepage:
 sa_museum_view:
     path:     /booking/{id}
     defaults:
-        _controllet: SAMuseumBundle:Booking:view
-    requirements:
-      id: \d+
+        _controller: SAMuseumBundle:Booking:view
+
 
 sa_museum_add:
     path:     /add

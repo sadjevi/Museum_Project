@@ -1,0 +1,25 @@
+{% extends "SAMuseumBundle::layout.html.twig" %}
+
+{% block title %}
+    Effectuer une reservation - {{ parent() }}
+{% endblock %}
+
+{% block projectmuseum_body %}
+
+    <h2>Reservation d'un billet</h2>
+
+    {{ include("SAMuseumBundle:Booking:form.html.twig") }}
+
+    <p>
+        Vous éditez une annonce déjà existante, merci de ne pas changer
+        l'esprit général de l'annonce déjà publiée.
+    </p>
+
+    <p>
+        <a href="{{ path('sa_museum_homepage') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'accueil
+        </a>
+    </p>
+
+{% endblock %}
