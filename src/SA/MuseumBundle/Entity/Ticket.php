@@ -3,6 +3,8 @@
 namespace SA\MuseumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ticket
@@ -25,6 +27,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(min=2)
      */
     private $name;
 
@@ -32,6 +35,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="forename", type="string", length=255)
+     * @Assert\Length(min=2)
      */
     private $forename;
 
@@ -39,6 +43,7 @@ class Ticket
      * @var int
      *
      * @ORM\Column(name="age", type="integer")
+     * @Assert\NotBlank()
      */
     private $age;
 
@@ -53,6 +58,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="bookedday", type="datetime")
+     * @Assert\DateTime()
      */
     private $bookedday;
 

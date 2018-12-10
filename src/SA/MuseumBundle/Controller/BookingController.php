@@ -44,9 +44,9 @@ class BookingController extends Controller
             ->add('name',      TextType::class)
             ->add('forename',  TextType::class)
             ->add('age',       TextType::class)
-            ->add('slot',      CheckboxType::class)
-            ->add('bookedday', DateType::class)
-            ->add('save',      SubmitType::class)
+            ->add('slot',      CheckboxType::class, array('required' => false))
+            ->add('bookedday', DateType::class, array('widget' => 'single_text'))
+            ->add('Reservation',      SubmitType::class)
         ;
 
         $form = $formBuilder->getForm();
