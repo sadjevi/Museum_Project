@@ -5,6 +5,7 @@ namespace SA\MuseumBundle\Controller;
 
 use SA\MuseumBundle\Entity\Booking;
 use SA\MuseumBundle\Entity\Ticket;
+use SA\MuseumBundle\Form\TicketType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -36,53 +37,23 @@ class BookingController extends Controller
         $ticket = new Ticket();
         $ticket->setRate(18);
 
-        // On crée le FormBuilder grâce au service form factory
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $ticket);
+        $form = $this->createForm(TicketType::class, $ticket);
 
-        // On ajoute les champs de l'entité que l'on veut à notre formulaire
-        $formBuilder
-            ->add('name',      TextType::class)
-            ->add('forename',  TextType::class)
-            ->add('age',       TextType::class)
-            ->add('slot',      CheckboxType::class, array('required' => false))
-            ->add('bookedday', DateType::class, array('widget' => 'single_text'))
-            ->add('Reservation',      SubmitType::class)
-        ;
-
-        $form = $formBuilder->getForm();
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
-        if ($request->isMethod('POST')) {
-            // Ici, on s'occupera de la création et de la gestion du formulaire
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ticket);
+            $em->flush();
 
-            $form->handleRequest($request);
+            $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
 
-            if ($form->isValid()) {
-                // On enregistre notre objet $ticket dans la base de données
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($ticket);
-                $em->flush();
-
-
-                $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
-
-                // Puis on redirige vers la page de visualisation de cettte annonce
-                return $this->redirectToRoute('sa_museum_view', array('id' => $ticket->getId()));
-            }
+            return $this->redirectToRoute('sa_museum_view', array('id' => $ticket->getId()));
         }
 
-        // À ce stade, le formulaire n'est pas valide car :
-        // - Soit la requête est de type GET, donc le visiteur vient d'arriver
-        // sur la page et veut voir le formulaire
-        // - Soit la requête est de type POST, mais le formulaire contient
-        // des valeurs invalides, donc on l'affiche de nouveau
-
-         return $this->render('SAMuseumBundle:Booking:add.html.twig', array(
-             'form' => $form->createView(),
-         ));
+         return $this->render('SAMuseumBundle:Booking:add.html.twig', array('form' => $form->createView()));
     }
-
-
 
     /*public function editAction($id, Request $request)
     {
