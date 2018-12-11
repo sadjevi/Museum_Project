@@ -15,6 +15,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Ticket
 {
     /**
+     * @ORM\ManyToOne(targetEntity="SA\MuseumBundle\Entity\Booking", inversedBy = "tickets" )
+     * @ORM\JoinColumn(nullable=TRUE)
+     */
+    protected $booking;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +33,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank
      * @Assert\Length(min=2)
      */
     private $name;
@@ -35,6 +42,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="forename", type="string", length=255)
+     * @Assert\NotBlank()
      * @Assert\Length(min=2)
      */
     private $forename;
@@ -44,6 +52,10 @@ class Ticket
      *
      * @ORM\Column(name="age", type="integer")
      * @Assert\NotBlank()
+     *  @Assert\Type(
+     *     type="integer",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      */
     private $age;
 
@@ -67,6 +79,7 @@ class Ticket
      * @var float
      *
      * @ORM\Column(name="rate", type="float")
+     *
      */
     private $rate;
 
@@ -223,5 +236,29 @@ class Ticket
     public function getRate()
     {
         return $this->rate;
+    }
+
+    /**
+     * Set booking
+     *
+     * @param \Project\MuseumBundle\Entity\Booking $booking
+     *
+     * @return Ticket
+     */
+    public function setBooking(\SA\MuseumBundle\Entity\Booking $booking = null)
+    {
+        $this->booking = $booking;
+
+        return $this;
+    }
+
+    /**
+     * Get booking
+     *
+     * @return \Project\MuseumBundle\Entity\Booking
+     */
+    public function getBooking()
+    {
+        return $this->booking;
     }
 }

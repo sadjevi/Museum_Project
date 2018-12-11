@@ -3,14 +3,16 @@
 namespace SA\MuseumBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TicketType extends AbstractType
+class BookingType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -18,11 +20,19 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',                                        TextType::class)
-            ->add('forename',                                    TextType::class)
-            ->add('age',                                         TextType::class)
-            ->add('slot',        CheckboxType::class, array('required' => false))
-            ->add('bookedday', DateType::class, array('widget' => 'single_text'));
+
+            ->add('bookedat', DateType::class)
+            ->add('ticketsnbr', IntegerType::class)
+            ->add('mail', EmailType::class)
+
+            ->add ('tickets', CollectionType::class, array(
+                'entry_type'   =>  TicketType::class,
+                'allow_add'    => true,
+                'allow_delete' => true
+            ))
+
+
+            ->add('Reservation', SubmitType::class);
 
     }
     
@@ -32,7 +42,7 @@ class TicketType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SA\MuseumBundle\Entity\Ticket'
+            'data_class' => 'SA\MuseumBundle\Entity\Booking'
         ));
     }
 
@@ -41,7 +51,7 @@ class TicketType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'sa_museumbundle_ticket';
+        return 'sa_museumbundle_booking';
     }
 
 

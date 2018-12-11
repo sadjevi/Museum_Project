@@ -3,8 +3,6 @@
 namespace SA\MuseumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Booking
@@ -34,7 +32,6 @@ class Booking
      * @var int
      *
      * @ORM\Column(name="ticketsnbr", type="integer")
-     * @Assert\Type(type="integer")
      */
     private $ticketsnbr;
 
@@ -49,16 +46,13 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Email
      */
     private $mail;
 
     /**
      * @var array
      *
-     * @ORM\OneToMany(targetEntity="SA\MuseumBundle\Entity\Ticket", mappedBy = "booking",cascade={"persist"})
-     * @Assert\Valid
+     * @ORM\OneToMany(targetEntity="Project\MuseumBundle\Entity\Ticket", mappedBy = "Booking",cascade={"persist"})
      */
     protected $tickets;
 
@@ -168,47 +162,5 @@ class Booking
     {
         return $this->mail;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->bookedat = new \Datetime();
-        $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add ticket
-     *
-     * @param \Project\MuseumBundle\Entity\Ticket $ticket
-     *
-     * @return Booking
-     */
-    public function addTicket(\SA\MuseumBundle\Entity\Ticket $ticket)
-    {
-        $this->tickets[] = $ticket;
-        $ticket->setBooking($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove ticket
-     *
-     * @param \Project\MuseumBundle\Entity\Ticket $ticket
-     */
-    public function removeTicket(\SA\MuseumBundle\Entity\Ticket $ticket)
-    {
-        $this->tickets->removeElement($ticket);
-    }
-
-    /**
-     * Get tickets
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTickets()
-    {
-        return $this->tickets;
-    }
 }
+

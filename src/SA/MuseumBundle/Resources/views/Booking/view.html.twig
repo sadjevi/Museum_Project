@@ -8,16 +8,17 @@
 
     {% block projectmuseum_body %}
 
-        <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
-            {#<div class="card-header">date réservation: {{ booking.bookedat|date('d/m/Y') }}
-                / {{ booking.Ticketnb}} billets#}
+            date réservation: {{ booking.bookedat|date('d/m/Y') }}
+                / {{ booking.Ticketsnbr}} billets
 
-            </div>
-                <div class="card-body">
-                    <h4 class="card-title">commande {{ ticket.Id}} </h4>
-                    <h5 class="card-title"><strong>prix total de la commande:{{ ticket.Rate }}€</strong></h5>
-                        <p>
-                                {% dump ticket %}
+
+
+                    <h4>commande {{ booking.Id}} </h4>
+                    <h5><strong>prix total de la commande:{{ booking.Rate }}€</strong></h5>
+                    <p>les billets  suivants seront envoyées à {{ booking.Mail }} <br/>
+                        {% for ticket in listTickets %}
+                        {% dump ticket %}
+
 
                                 Mr ou mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
                                 Age {{ticket.Age}} <br/>
@@ -28,11 +29,10 @@
                                     demi journée
                                 {% endif %}
                                 du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
+                        {% endfor %}
 
 
                         </p>
-                </div>
-        </div>
 
     {% endblock %}
 
