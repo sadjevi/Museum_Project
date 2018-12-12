@@ -53,10 +53,6 @@ class Ticket
      *
      * @ORM\Column(name="age", type="integer")
      * @Assert\NotBlank()
-     *  @Assert\Type(
-     *     type="integer",
-     *     message="The value {{ value }} is not a valid {{ type }}."
-     * )
      */
     private $age;
 

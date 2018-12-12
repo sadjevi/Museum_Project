@@ -7,6 +7,7 @@ use SA\MuseumBundle\Entity\Booking;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Form\BookingType;
 use SA\MuseumBundle\Form\TicketType;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -15,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
+use SendGrid;
 
 class BookingController extends Controller
 {
@@ -65,11 +68,24 @@ class BookingController extends Controller
            $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
+            $this->mailAction();
 
             return $this->redirectToRoute('sa_museum_view', array('id' => $booking->getId()));
         }
 
          return $this->render('SAMuseumBundle:Booking:add.html.twig', array('form' => $form->createView()));
+    }
+
+    public function mailAction()
+    {
+        $message = (new \Swift_Message('test Mail'));
+        $message
+            ->setFrom('SA_Louvre_Museum@devmail.com')
+            ->setTo('sadjevi@me.com')
+            ->setSubject('Subject')
+            ->setBody($this->renderView('Email/mail.html.twig'),'text/html');
+
+        $this->get('mailer')->send($message);
     }
 
     /*public function editAction($id, Request $request)
