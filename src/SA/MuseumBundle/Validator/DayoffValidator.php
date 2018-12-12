@@ -11,15 +11,16 @@ class DayoffValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
+        if(date_format($value,'l') == 'Tuesday'
+        || date_format($value,'l') == 'Sunday'
+        || date_format($value,'d/m') == '01/05'
+        || date_format($value,'d/m') == '01/11'
+        || date_format($value,'d/m') == '25/12')
 
-        if(date_format($value,'l') == 'Tuesday')
         {
             $this->context->addViolation($constraint->message);
-
         }
-
     }
-
 }
 
 
