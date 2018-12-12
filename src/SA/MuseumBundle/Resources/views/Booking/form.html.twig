@@ -1,13 +1,13 @@
 <h3></h3>
 
 <div class="well">
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
 
 
    {{ form_row(form.tickets) }}
 
 
-    <a href="#" id="add_ticket" class="btn btn-default">Ajouter un billet</a>
+    <a href="#" id="add_ticket" class="btn btn-info">Ajouter un billet</a>
 
     {# ... #}
     {# Génération automatique des champs pas encore écrits.
@@ -18,6 +18,8 @@
 
     {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
     {{ form_widget(form.Reservation, {'attr': {'class': 'btn btn-success'}}) }}
+
+
 
 
 

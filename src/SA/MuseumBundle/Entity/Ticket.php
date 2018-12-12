@@ -5,6 +5,7 @@ namespace SA\MuseumBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use SA\MuseumBundle\Validator\Dayoff;
 
 /**
  * Ticket
@@ -70,7 +71,8 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="bookedday", type="datetime")
-     * @Assert\DateTime()
+     *
+     * @Dayoff()
      */
     private $bookedday;
 
