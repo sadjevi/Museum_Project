@@ -10,15 +10,27 @@ sa_museum_view:
     defaults:
         _controller: SAMuseumBundle:Booking:view
 
-
 sa_museum_add:
     path:     /add
     defaults:
         _controller: SAMuseumBundle:Booking:add
-
 
 sa_museum_infos:
     path:     /infos
     defaults:
         _controller: SAMuseumBundle:Default:infos
 
+museum_tickets_checkout:
+    path:     /checkout
+    defaults:
+        _controller: SAMuseumBundle:Order:checkout
+
+museum_tickets_order:
+    path:     /prepare/{id}
+    defaults:
+        _controller: SAMuseumBundle:Order:prepare
+
+museum_payments_confirm:
+    path:    /confirm/
+    defaults:
+        _controller: SAMuseumBundle:Order:confirm

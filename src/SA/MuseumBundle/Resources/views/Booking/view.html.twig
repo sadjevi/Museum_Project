@@ -31,8 +31,11 @@
                                 du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
                         {% endfor %}
 
+                        <a class="btn btn-succes"  href="{{ path('museum_tickets_order',  { 'id': booking.id }) }}"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Regler</a>
 
-                        </p>
+
+
+                    </p>
 
     {% endblock %}
 
