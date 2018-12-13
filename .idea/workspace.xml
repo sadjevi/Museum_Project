@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bff8a63d-2c8c-4d13-b2d5-abba03a0637a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/prepare.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Museum_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Museum_Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/parameters.yml.dist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/SymfonyRequirements.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/SymfonyRequirements.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/prepare.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/prepare.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,19 +47,19 @@
         <counts>
           <entry key="dist" value="16" />
           <entry key="json" value="1" />
-          <entry key="php" value="3317" />
-          <entry key="twig" value="1330" />
-          <entry key="yml" value="585" />
+          <entry key="php" value="3503" />
+          <entry key="twig" value="1916" />
+          <entry key="yml" value="600" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JSON" value="1" />
-          <entry key="PHP" value="3317" />
+          <entry key="PHP" value="3503" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Twig" value="1329" />
-          <entry key="YAML" value="585" />
+          <entry key="Twig" value="1915" />
+          <entry key="YAML" value="600" />
         </counts>
       </usages-collector>
     </session>
@@ -85,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+            <state relative-caret-position="30">
+              <caret line="2" column="18" selection-start-line="2" selection-end-line="2" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -112,8 +105,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
+            <state relative-caret-position="918">
+              <caret line="62" column="48" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
               <folding>
                 <element signature="e#47#82#0#PHP" expanded="true" />
               </folding>
@@ -136,8 +129,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="72" column="92" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="92" />
+            <state relative-caret-position="207">
+              <caret line="33" column="105" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="105" />
               <folding>
                 <element signature="e#47#82#0#PHP" expanded="true" />
               </folding>
@@ -148,8 +141,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="14" selection-end-line="41" selection-end-column="14" />
+            <state relative-caret-position="495">
+              <caret line="33" selection-start-line="33" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -157,8 +150,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+            <state relative-caret-position="465">
+              <caret line="31" column="178" selection-start-line="31" selection-start-column="178" selection-end-line="31" selection-end-column="178" />
             </state>
           </provider>
         </entry>
@@ -202,14 +195,14 @@
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/Email/mail.html.twig" />
-        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/prepare.html.twig" />
-        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" />
+        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php" />
       </list>
     </option>
@@ -421,6 +414,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/bsugar/Documents/OCProjects/Museum_Project/src/SA/MuseumBundle/Controller/BookingController.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -447,38 +441,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1544373069443</updated>
-      <workItem from="1544373070742" duration="65676000" />
+      <workItem from="1544373070742" duration="71332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65676000" />
+    <option name="totallyTimeSpent" value="71332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.22051696" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" />
-      <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout>
-    <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.22051696" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
@@ -498,7 +471,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -698,16 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="72" column="92" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="92" />
-          <folding>
-            <element signature="e#47#82#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/prepare.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -715,31 +678,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="14" selection-end-line="41" selection-end-column="14" />
+        <state relative-caret-position="207">
+          <caret line="33" column="105" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="105" />
+          <folding>
+            <element signature="e#47#82#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        <state relative-caret-position="495">
+          <caret line="33" selection-start-line="33" selection-end-line="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        <state relative-caret-position="30">
+          <caret line="2" column="18" selection-start-line="2" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="178" selection-start-line="31" selection-start-column="178" selection-end-line="31" selection-end-column="178" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
+        <state relative-caret-position="918">
+          <caret line="62" column="48" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
           <folding>
             <element signature="e#47#82#0#PHP" expanded="true" />
           </folding>

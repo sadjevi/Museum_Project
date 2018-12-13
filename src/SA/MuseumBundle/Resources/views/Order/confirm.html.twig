@@ -1,16 +1,37 @@
 {% extends "::layout.html.twig" %}
 
 {% block title %}
-    Commande  - {{ parent() }}
+    Confirmation  - {{ parent() }}
 {% endblock %}
 
 {% block body %}
+    <h3>Votre commande est confirmée</strong></h3>
 
     {% block projectmuseum_body %}
 
-       test
+        {% for ticket in listTickets %}
 
-        ok ça fonctionne
+
+            Votre règlement de {{ ticket.Rate }} € a bien été pris en compte.<br/>
+
+            Votre reservation est à présent bien enregistré pour la
+            {% if ticket.Slot == 1  %}
+                    journée
+                {% else %}
+                    demi journée
+                {% endif %}
+            du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
+        {% endfor %}
+
+        un email de confirmation à également été envoyé à {{ booking.Mail }}.<br/>
+
+        Nous vous remercions et avons hâte de vous faire découvrir le plus grand musée d'art et d'antiquités au monde
+        <br>
+
+
+        <a class="btn btn-succes"  href="{{ path('sa_museum_homepage',  { 'id': booking.id }) }}"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Retour à l'accueil</a>
+
+
     {% endblock %}
 
 {% endblock %}

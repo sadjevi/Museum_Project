@@ -21,7 +21,7 @@ sa_museum_infos:
         _controller: SAMuseumBundle:Default:infos
 
 museum_tickets_checkout:
-    path:     /checkout
+    path:     /checkout/{id}
     defaults:
         _controller: SAMuseumBundle:Order:checkout
 
@@ -31,6 +31,6 @@ museum_tickets_order:
         _controller: SAMuseumBundle:Order:prepare
 
 museum_payments_confirm:
-    path:    /confirm/
+    path:    /confirm/{id}
     defaults:
         _controller: SAMuseumBundle:Order:confirm

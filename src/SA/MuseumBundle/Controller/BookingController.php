@@ -56,7 +56,7 @@ class BookingController extends Controller
 
             foreach ($tickets as $ticket)
             {
-                $ticket->setRate(32);
+                $ticket->setRate(4500);
 
                 $total = $total + $ticket->getRate();
                 $ticket->setBooking($booking);
