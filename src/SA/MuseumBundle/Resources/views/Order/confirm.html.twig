@@ -12,7 +12,7 @@
         {% for ticket in listTickets %}
 
 
-            Votre règlement de {{ ticket.Rate }} € a bien été pris en compte.<br/>
+            Votre règlement de {{ ticket.Rate / 100 }} € a bien été pris en compte.<br/>
 
             Votre reservation est à présent bien enregistré pour la
             {% if ticket.Slot == 1  %}

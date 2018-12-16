@@ -56,7 +56,22 @@ class BookingController extends Controller
 
             foreach ($tickets as $ticket)
             {
-                $ticket->setRate(4500);
+                if($ticket->getAge() < 12 && $ticket->getAge() >=4 )
+                {
+                    $ticket->setRate(800);
+                }
+                if($ticket->getAge() >=12 && $ticket->getAge() <60)
+                {
+                    $ticket->setRate(1600);
+                }
+                if($ticket->getAge()  >=60)
+                {
+                    $ticket->setRate(1200);
+                }
+                if($ticket->getAge()  <4 )
+                {
+                    $ticket->setRate(0);
+                }
 
                 $total = $total + $ticket->getRate();
                 $ticket->setBooking($booking);
@@ -68,7 +83,7 @@ class BookingController extends Controller
            $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
-            $this->mailAction();
+            $this->mailAction($id);
 
             return $this->redirectToRoute('sa_museum_view', array('id' => $booking->getId()));
         }
@@ -80,7 +95,7 @@ class BookingController extends Controller
     {
         $message = (new \Swift_Message('test Mail'));
         $message
-            ->setFrom('SA_Louvre_Museum@devmail.com')
+            ->setFrom('devmail@louvremuseum.com')
             ->setTo('sadjevi@me.com')
             ->setSubject('Subject')
             ->setBody($this->renderView('Email/mail.html.twig'),'text/html');

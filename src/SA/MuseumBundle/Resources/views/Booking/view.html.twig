@@ -8,34 +8,50 @@
 
     {% block projectmuseum_body %}
 
-            date réservation: {{ booking.bookedat|date('d/m/Y') }}
-                / {{ booking.Ticketsnbr}} billets
+        <h4>commande SAlm000{{ booking.Id}} </h4>
+        <div style="height:100px"></div>
+        <h5><strong>prix total de la commande:{{ booking.Rate / 100 }}€</strong></h5>
+        <h5>date réservation: {{ booking.bookedat|date('d/m/Y') }}</h5>
+        <h6>Nombre de billets:{{ booking.Ticketsnbr}}</h6>
+        <div style="height:50px"></div>
+        <h6>Une fois votre règlement enregistré, une confirmation de réservation  sera envoyée à {{ booking.Mail }} pour les billets suivants</h6>
+        <div style="height:50px"></div>
 
+        {% for ticket in listTickets %}
+        {% dump ticket %}
 
+                Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
+                Age {{ticket.Age}} <br/>
+                Billet valable  pour la
+                {% if ticket.Slot == 1  %}
+                    journée
+                {% else %}
+                    demi journée
+                {% endif %}
+                du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
+                Tarif
+             {#% set ticketrate = ticket.rate %}
 
-                    <h4>commande {{ booking.Id}} </h4>
-                    <h5><strong>prix total de la commande:{{ booking.Rate }}€</strong></h5>
-                    <p>les billets  suivants seront envoyées à {{ booking.Mail }} <br/>
-                        {% for ticket in listTickets %}
-                        {% dump ticket %}
+                {% switch ticket.Rate %}
+                 {% case "0" %}
+                    {{jeune enfant}}
 
+                 {% case "1200" %}
+                    {{senior }}
 
-                                Mr ou mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
-                                Age {{ticket.Age}} <br/>
-                                Billet valable  pour la
-                                {% if ticket.Slot == 1  %}
-                                    journée
-                                {% else %}
-                                    demi journée
-                                {% endif %}
-                                du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
-                        {% endfor %}
+                 {% case "1600" %}
+                    {{normal }}
 
-                        <a class="btn btn-succes"  href="{{ path('museum_tickets_order',  { 'id': booking.id }) }}"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Regler</a>
+                 {% case "800" %}
+                    {{enfant }}
+                {% endswitch %#}
 
+                Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }}{{ ticket.Age }} <br/>
+                <div style="height:35px"></div>
 
+        {% endfor %}
 
-                    </p>
+        <a class="btn btn-succes"  href="{{ path('museum_tickets_order',  { 'id': booking.id }) }}"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Regler</a>
 
     {% endblock %}
 

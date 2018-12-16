@@ -67,7 +67,10 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="bookedday", type="datetime")
-     *
+     *@Assert\Range(
+     *     min = "now-1 hour",
+     *     max = "last day of December next year"
+     *     )
      * @Dayoff()
      */
     private $bookedday;
