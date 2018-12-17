@@ -1,0 +1,28 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Commande  - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {% block projectmuseum_body %}
+
+
+        {% for ticket in listTickets %}
+                {% dump ticket %}
+
+        Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
+        Age {{ticket.Age}} <br/>
+        Billet valable  pour la
+        {% if ticket.Slot == 1  %}
+            journée
+        {% else %}
+            demi journée
+        {% endif %}
+        du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
+
+        {% endfor %}
+    {% endblock %}
+
+{% endblock %}

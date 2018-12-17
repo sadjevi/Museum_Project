@@ -1,11 +1,45 @@
-Bonjour,
-
-mail test
-
-{# example, assuming you have a route named "login" #}
 
 
-Thanks!
 
-{# Makes an absolute URL to the /images/logo.png file #}
-<img src="{{ absolute_url(asset('images/logo.png')) }}">
+<h4>commande SAlm000{{ booking.Id}} </h4>
+<div style="height:100px"></div>
+<h5><strong>prix total de la commande:{{ booking.Rate / 100 }}€</strong></h5>
+<h5>date réservation: {{ booking.bookedat|date('d/m/Y') }}</h5>
+<h6>Nombre de billets:{{ booking.Ticketsnbr}}</h6>
+<div style="height:50px"></div>
+<div style="height:50px"></div>
+
+{% for ticket in listTickets %}
+        {% dump ticket %}
+
+        Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
+        Age {{ticket.Age}} <br/>
+        Billet valable  pour la
+        {% if ticket.Slot == 1  %}
+            journée
+        {% else %}
+            demi journée
+        {% endif %}
+        du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
+
+{#% set ticketrate = ticket.rate %}
+
+   {% switch ticket.Rate %}
+    {% case "0" %}
+       {{jeune enfant}}
+
+    {% case "1200" %}
+       {{senior }}
+
+    {% case "1600" %}
+       {{normal }}
+
+    {% case "800" %}
+       {{enfant }}
+   {% endswitch %#}
+
+        Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }}{{ ticket.Age }} <br/>
+        <div style="height:35px"></div>
+{% endfor %}
+
+

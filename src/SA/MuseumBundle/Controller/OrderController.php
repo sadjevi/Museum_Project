@@ -7,6 +7,7 @@ use SA\MuseumBundle\Entity\Booking;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use SA\MuseumBundle\SAMuseumBundle;
 
 
 
@@ -27,6 +28,7 @@ class OrderController extends Controller
     {
         $em      = $this->getDoctrine()->getManager();
         $booking = $em->getRepository('SAMuseumBundle:Booking')->find($id);
+        $listTickets = $em->getRepository('SAMuseumBundle:Ticket')->findBy(array('booking' => $booking));
         $rate = $booking->getRate();
         \Stripe\Stripe::setApiKey("sk_test_9QKwAblo8Jv30RTOoUTqbOLd");
 
@@ -42,14 +44,16 @@ class OrderController extends Controller
                 "description" => "Paiement Stripe - OpenClassrooms Exemple"
             ));
             $this->addFlash('info', "success","Bravo ça marche !");
+            return $this->redirectToRoute("museum_mailsend", array('id' => $booking->getId()));
 
-            return $this->redirectToRoute('museum_payments_confirm', array('id' => $booking->getId()));
-        } catch(\Stripe\Error\Card $e) {
+        } catch(\Stripe\Error\Card $e)
 
-            $this->addFlash('info', "error","Snif ça marche pas :(");
-            return $this->redirectToRoute("museum_tickets_order");
-            // The card has been declined
-        }
+            {
+
+                $this->addFlash('info', "error","Snif ça marche pas :(");
+                return $this->redirectToRoute("museum_tickets_order");
+                // The card has been declined
+            }
     }
 
     public function confirmAction($id)

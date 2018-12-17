@@ -4,6 +4,7 @@ namespace SA\MuseumBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,7 +23,9 @@ class TicketType extends AbstractType
             ->add('forename',                                    TextType::class)
             ->add('age',                                         TextType::class)
             ->add('slot',        CheckboxType::class, array('required' => false))
-            ->add('bookedday', DateType::class, array('widget' => 'single_text'));
+            ->add('bookedday', DateType::class, array('widget' => 'single_text'))
+            ->add('country',                                  CountryType::class)
+            ->add('specialrate', CheckboxType::class, array('required' => false));
 
     }
     

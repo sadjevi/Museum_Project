@@ -29,25 +29,11 @@
                     demi journée
                 {% endif %}
                 du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
-                Tarif
-             {#% set ticketrate = ticket.rate %}
-
-                {% switch ticket.Rate %}
-                 {% case "0" %}
-                    {{jeune enfant}}
-
-                 {% case "1200" %}
-                    {{senior }}
-
-                 {% case "1600" %}
-                    {{normal }}
-
-                 {% case "800" %}
-                    {{enfant }}
-                {% endswitch %#}
+                Tarif: {{ ticket.Rate /100 }} euros <br/>
 
                 Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }}{{ ticket.Age }} <br/>
                 <div style="height:35px"></div>
+
 
         {% endfor %}
 

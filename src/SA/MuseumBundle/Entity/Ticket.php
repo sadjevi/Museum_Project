@@ -57,6 +57,14 @@ class Ticket
     private $age;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $country;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="slot", type="boolean")
@@ -74,6 +82,13 @@ class Ticket
      * @Dayoff()
      */
     private $bookedday;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="specialrate", type="boolean")
+     */
+    private $specialrate = true;
 
 
     /**
@@ -261,5 +276,53 @@ class Ticket
     public function getBooking()
     {
         return $this->booking;
+    }
+
+    /**
+     * Set country.
+     *
+     * @param string $country
+     *
+     * @return Ticket
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country.
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set specialrate.
+     *
+     * @param bool $specialrate
+     *
+     * @return Ticket
+     */
+    public function setSpecialrate($specialrate)
+    {
+        $this->specialrate = $specialrate;
+
+        return $this;
+    }
+
+    /**
+     * Get specialrate.
+     *
+     * @return bool
+     */
+    public function getSpecialrate()
+    {
+        return $this->specialrate;
     }
 }

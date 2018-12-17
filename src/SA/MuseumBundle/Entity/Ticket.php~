@@ -5,6 +5,7 @@ namespace SA\MuseumBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use SA\MuseumBundle\Validator\Dayoff;
 
 /**
  * Ticket
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Ticket
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Project\MuseumBundle\Entity\Booking", inversedBy = "tickets" )
+     * @ORM\ManyToOne(targetEntity="SA\MuseumBundle\Entity\Booking", inversedBy = "tickets" )
      * @ORM\JoinColumn(nullable=TRUE)
      */
     protected $booking;
@@ -33,6 +34,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank
      * @Assert\Length(min=2)
      */
     private $name;
@@ -41,6 +43,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="forename", type="string", length=255)
+     * @Assert\NotBlank()
      * @Assert\Length(min=2)
      */
     private $forename;
@@ -54,6 +57,14 @@ class Ticket
     private $age;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $country;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="slot", type="boolean")
@@ -64,15 +75,27 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="bookedday", type="datetime")
-     * @Assert\DateTime()
+     *@Assert\Range(
+     *     min = "now-1 hour",
+     *     max = "last day of December next year"
+     *     )
+     * @Dayoff()
      */
     private $bookedday;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="specialrate", type="boolean")
+     */
+    private $specialrate = true;
 
 
     /**
      * @var float
      *
      * @ORM\Column(name="rate", type="float")
+     *
      */
     private $rate;
 
@@ -229,5 +252,29 @@ class Ticket
     public function getRate()
     {
         return $this->rate;
+    }
+
+    /**
+     * Set booking
+     *
+     * @param \Project\MuseumBundle\Entity\Booking $booking
+     *
+     * @return Ticket
+     */
+    public function setBooking(\SA\MuseumBundle\Entity\Booking $booking = null)
+    {
+        $this->booking = $booking;
+
+        return $this;
+    }
+
+    /**
+     * Get booking
+     *
+     * @return \Project\MuseumBundle\Entity\Booking
+     */
+    public function getBooking()
+    {
+        return $this->booking;
     }
 }

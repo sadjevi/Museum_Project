@@ -7,6 +7,7 @@ use SA\MuseumBundle\Entity\Booking;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Form\BookingType;
 use SA\MuseumBundle\Form\TicketType;
+use SA\MuseumBundle\SAMuseumBundle;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -72,6 +73,10 @@ class BookingController extends Controller
                 {
                     $ticket->setRate(0);
                 }
+                if($ticket->getSpecialrate() > 0)
+                {
+                    $ticket->setRate(1000);
+                }
 
                 $total = $total + $ticket->getRate();
                 $ticket->setBooking($booking);
@@ -83,7 +88,7 @@ class BookingController extends Controller
            $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
-            $this->mailAction($id);
+           // $this->mailAction($id);
 
             return $this->redirectToRoute('sa_museum_view', array('id' => $booking->getId()));
         }
@@ -91,16 +96,39 @@ class BookingController extends Controller
          return $this->render('SAMuseumBundle:Booking:add.html.twig', array('form' => $form->createView()));
     }
 
-    public function mailAction()
+    public function mailAction($id)
     {
-        $message = (new \Swift_Message('test Mail'));
+        $em = $this->getDoctrine()->getManager();
+        $booking = $em->getRepository('SAMuseumBundle:Booking')->find($id);
+        $listTickets = $em->getRepository('SAMuseumBundle:Ticket')->findBy(array('booking' => $booking));
+        $message = (new \Swift_Message('Confirmation de reservation'));
         $message
             ->setFrom('devmail@louvremuseum.com')
             ->setTo('sadjevi@me.com')
             ->setSubject('Subject')
-            ->setBody($this->renderView('Email/mail.html.twig'),'text/html');
+            ->setBody($this->renderView('Email/mail.html.twig',
+                array(
+                    'booking'        => $booking,
+                    'listTickets'    => $listTickets)),'text/html');
 
         $this->get('mailer')->send($message);
+
+        return $this->render('SAMuseumBundle:Order:confirm.html.twig', array(
+            'booking'        => $booking,
+            'listTickets'    => $listTickets
+        ));
+    }
+
+    public function oneDayBooksAction($bookedday)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('SAMuseumBundle:Ticket');
+        $listTickets = $repository->findBy(array('bookedday' => $bookedday));
+
+
+
+        return $this->render('SAMuseumBundle:Ticket:view.html.twig', array(
+            'listTickets'    => $listTickets
+        ));
     }
 
     /*public function editAction($id, Request $request)

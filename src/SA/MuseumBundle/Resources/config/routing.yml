@@ -34,3 +34,13 @@ museum_payments_confirm:
     path:    /confirm/{id}
     defaults:
         _controller: SAMuseumBundle:Order:confirm
+
+museum_tickets:
+    path:    /tickets/{bookedday}
+    defaults:
+        _controller: SAMuseumBundle:Ticket:view
+
+museum_mailsend:
+    path:     /book_confirmed/{id}
+    defaults:
+        _controller: SAMuseumBundle:Booking:mail

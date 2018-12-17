@@ -6,27 +6,34 @@
 
 {% block body %}
     <h3>Votre commande est confirmée</strong></h3>
+    <div style="height:100px"></div>
 
     {% block projectmuseum_body %}
 
+        Votre règlement de {{ booking.Rate / 100 }} € a bien été pris en compte.<br/>
+        <div style="height:50px"></div>
+
+        Votre reservation est à présent bien enregistré pour: </br>
+
         {% for ticket in listTickets %}
 
-
-            Votre règlement de {{ ticket.Rate / 100 }} € a bien été pris en compte.<br/>
-
-            Votre reservation est à présent bien enregistré pour la
-            {% if ticket.Slot == 1  %}
+            la {% if ticket.Slot == 1  %}
                     journée
                 {% else %}
                     demi journée
                 {% endif %}
             du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
+            <div style="height:30px"></div>
+
         {% endfor %}
+        <div style="height:50px"></div>
 
-        un email de confirmation à également été envoyé à {{ booking.Mail }}.<br/>
+        <h6>un email de confirmation à également été envoyé à {{ booking.Mail }};</h6>
+        <div style="height:50px"></div>
 
-        Nous vous remercions et avons hâte de vous faire découvrir le plus grand musée d'art et d'antiquités au monde
-        <br>
+        Nous vous remercions et avons hâte de vous faire découvrir le plus grand musée d'art et d'antiquités au monde <br>
+
+        à bientôt!!
 
 
         <a class="btn btn-succes"  href="{{ path('sa_museum_homepage',  { 'id': booking.id }) }}"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Retour à l'accueil</a>
