@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bff8a63d-2c8c-4d13-b2d5-abba03a0637a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Ticket/view.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/Email/mail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Email/mail.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Form/TicketType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Form/TicketType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SA/MuseumBundle/Validator/DayoffValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SA/MuseumBundle/Validator/DayoffValidator.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,17 +28,17 @@
         <counts>
           <entry key="dist" value="2" />
           <entry key="json" value="1" />
-          <entry key="php" value="31" />
-          <entry key="twig" value="26" />
+          <entry key="php" value="33" />
+          <entry key="twig" value="27" />
           <entry key="yml" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="1" />
-          <entry key="PHP" value="31" />
+          <entry key="PHP" value="33" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Twig" value="26" />
+          <entry key="Twig" value="27" />
           <entry key="YAML" value="12" />
         </counts>
       </usages-collector>
@@ -53,8 +46,8 @@
         <counts>
           <entry key="dist" value="16" />
           <entry key="json" value="1" />
-          <entry key="php" value="4546" />
-          <entry key="twig" value="2649" />
+          <entry key="php" value="5110" />
+          <entry key="twig" value="2834" />
           <entry key="yml" value="709" />
         </counts>
       </usages-collector>
@@ -62,9 +55,9 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JSON" value="1" />
-          <entry key="PHP" value="4546" />
+          <entry key="PHP" value="5110" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Twig" value="2648" />
+          <entry key="Twig" value="2833" />
           <entry key="YAML" value="709" />
         </counts>
       </usages-collector>
@@ -75,10 +68,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-26">
-              <caret line="75" column="48" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="48" />
+            <state relative-caret-position="216">
+              <caret line="85" column="7" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
               <folding>
-                <element signature="e#47#82#0#PHP" expanded="true" />
+                <element signature="e#47#60#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Validator/DayoffValidator.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+              <folding>
+                <element signature="e#46#89#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,17 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Form/TicketType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="27" column="82" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/form.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
+            <state relative-caret-position="533">
+              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -107,15 +103,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="563">
               <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/add.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -132,7 +119,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
@@ -149,10 +136,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Ticket/view.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3066">
+              <caret line="80" column="12" selection-start-line="77" selection-start-column="6" selection-end-line="80" selection-end-column="12" />
+              <folding>
+                <element signature="e#42#74#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="11" column="40" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="40" />
+            <state relative-caret-position="238">
+              <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
               <folding>
                 <element signature="e#355#375#0#HTML" expanded="true" />
                 <element signature="e#506#526#0#HTML" expanded="true" />
@@ -173,18 +181,6 @@
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Validator/DayoffValidator.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
-              <folding>
-                <element signature="e#46#89#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -218,15 +214,15 @@
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/prepare.html.twig" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Ticket/view.html.twig" />
-        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php" />
-        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Form/TicketType.php" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Validator/DayoffValidator.php" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/OrderController.php" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/config/routing.yml" />
-        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig" />
-        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/Email/mail.html.twig" />
         <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig" />
+        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php" />
+        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Form/TicketType.php" />
+        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php" />
+        <option value="$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig" />
       </list>
     </option>
   </component>
@@ -389,6 +385,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="SA" type="462c0819:PsiDirectoryNode" />
               <item name="MuseumBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Museum_Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Museum_Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SA" type="462c0819:PsiDirectoryNode" />
+              <item name="MuseumBundle" type="462c0819:PsiDirectoryNode" />
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -499,12 +503,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1544373069443</updated>
-      <workItem from="1544373070742" duration="100748000" />
+      <workItem from="1544373070742" duration="108577000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100748000" />
+    <option name="totallyTimeSpent" value="108577000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -674,39 +678,12 @@
     <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Tests/Controller/DefaultControllerTest.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Ticket/view.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Form/BookingType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="31" column="14" selection-start-line="27" selection-start-column="13" selection-end-line="31" selection-end-column="14" />
           <folding>
             <element signature="e#40#80#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2551">
-          <caret line="61" column="56" selection-start-line="61" selection-start-column="56" selection-end-line="61" selection-end-column="56" />
-          <folding>
-            <element signature="e#42#74#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Validator/DayoffValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
-          <folding>
-            <element signature="e#46#89#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -729,13 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Form/TicketType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="27" column="82" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
         </state>
       </provider>
     </entry>
@@ -769,29 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="75" column="48" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="48" />
-          <folding>
-            <element signature="e#47#82#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="11" column="40" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="40" />
-          <folding>
-            <element signature="e#355#375#0#HTML" expanded="true" />
-            <element signature="e#506#526#0#HTML" expanded="true" />
-            <element signature="e#651#671#0#HTML" expanded="true" />
-            <element signature="e#1664#1683#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Order/confirm.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -802,6 +749,63 @@
             <element signature="e#717#737#0#HTML" expanded="true" />
             <element signature="e#779#799#0#HTML" expanded="true" />
             <element signature="e#903#923#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Ticket/view.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Form/TicketType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Validator/DayoffValidator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+          <folding>
+            <element signature="e#46#89#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Entity/Ticket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3066">
+          <caret line="80" column="12" selection-start-line="77" selection-start-column="6" selection-end-line="80" selection-end-column="12" />
+          <folding>
+            <element signature="e#42#74#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Controller/BookingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="85" column="7" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
+          <folding>
+            <element signature="e#47#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SA/MuseumBundle/Resources/views/Booking/view.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding>
+            <element signature="e#355#375#0#HTML" expanded="true" />
+            <element signature="e#506#526#0#HTML" expanded="true" />
+            <element signature="e#651#671#0#HTML" expanded="true" />
+            <element signature="e#1664#1683#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

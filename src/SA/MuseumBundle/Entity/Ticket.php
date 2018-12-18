@@ -49,12 +49,12 @@ class Ticket
     private $forename;
 
     /**
-     * @var int
+     *  @var \DateTime
      *
-     * @ORM\Column(name="age", type="integer")
+     * @ORM\Column(name="birthdate", type="datetime")
      * @Assert\NotBlank()
      */
-    private $age;
+    private $birthdate;
 
     /**
      * @var string
@@ -156,30 +156,6 @@ class Ticket
     public function getForename()
     {
         return $this->forename;
-    }
-
-    /**
-     * Set age
-     *
-     * @param integer $age
-     *
-     * @return Ticket
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return int
-     */
-    public function getAge()
-    {
-        return $this->age;
     }
 
     /**
@@ -324,5 +300,29 @@ class Ticket
     public function getSpecialrate()
     {
         return $this->specialrate;
+    }
+
+    /**
+     * Set birthdate.
+     *
+     * @param \DateTime $birthdate
+     *
+     * @return Ticket
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthdate.
+     *
+     * @return \DateTime
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
     }
 }

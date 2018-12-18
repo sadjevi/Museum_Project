@@ -3,6 +3,7 @@
 
 namespace SA\MuseumBundle\Controller;
 
+use DateTime;
 use SA\MuseumBundle\Entity\Booking;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Form\BookingType;
@@ -57,7 +58,7 @@ class BookingController extends Controller
 
             foreach ($tickets as $ticket)
             {
-                if($ticket->getAge() < 12 && $ticket->getAge() >=4 )
+                /*if($ticket->getAge() < 12 && $ticket->getAge() >=4 )
                 {
                     $ticket->setRate(800);
                 }
@@ -72,11 +73,36 @@ class BookingController extends Controller
                 if($ticket->getAge()  <4 )
                 {
                     $ticket->setRate(0);
-                }
-                if($ticket->getSpecialrate() > 0)
+                }*/
+                $x = $ticket->getBirthdate();
+                $y = $x->format('Y-m-d');
+                $z = new DateTime($y);
+                $now = new DateTime;
+                $interval = $z->diff($now);
+                $age = $interval->format('%Y');
+
+                if($age <12 && $age >= 4)
                 {
-                    $ticket->setRate(1000);
+                    $ticket->setRate(800);
                 }
+                if($age >= 12 && $age < 60)
+                {
+                    $ticket->setRate(1600);
+                }
+                if($age >= 60 )
+                {
+                    $ticket->setRate(1200);
+                }
+                if($age < 4)
+                {
+                    $ticket->setRate(0);
+                }
+                 if($ticket->getSpecialrate() > 0)
+                 {
+                     $ticket->setRate(1000);
+                 }
+
+
 
                 $total = $total + $ticket->getRate();
                 $ticket->setBooking($booking);
@@ -129,6 +155,17 @@ class BookingController extends Controller
         return $this->render('SAMuseumBundle:Ticket:view.html.twig', array(
             'listTickets'    => $listTickets
         ));
+    }
+
+   /* public function getAge($date)
+    {
+        $ticket = New Ticket;
+        $startdate = $ticket->getBirthdate($date);
+        $interval = $startdate->diff('New\DateTime()');
+        $age = $interval$->format('%Y');
+
+        return $age;
+
     }
 
     /*public function editAction($id, Request $request)

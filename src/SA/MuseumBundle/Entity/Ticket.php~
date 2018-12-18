@@ -49,12 +49,12 @@ class Ticket
     private $forename;
 
     /**
-     * @var int
+     *  @var \DateTime
      *
-     * @ORM\Column(name="age", type="integer")
+     * @ORM\Column(name="birthdate", type="datetime")
      * @Assert\NotBlank()
      */
-    private $age;
+    private $birthdate;
 
     /**
      * @var string
@@ -276,5 +276,53 @@ class Ticket
     public function getBooking()
     {
         return $this->booking;
+    }
+
+    /**
+     * Set country.
+     *
+     * @param string $country
+     *
+     * @return Ticket
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country.
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set specialrate.
+     *
+     * @param bool $specialrate
+     *
+     * @return Ticket
+     */
+    public function setSpecialrate($specialrate)
+    {
+        $this->specialrate = $specialrate;
+
+        return $this;
+    }
+
+    /**
+     * Get specialrate.
+     *
+     * @return bool
+     */
+    public function getSpecialrate()
+    {
+        return $this->specialrate;
     }
 }

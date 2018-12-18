@@ -20,18 +20,35 @@
         {% for ticket in listTickets %}
         {% dump ticket %}
 
+
+
+
                 Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
-                Age {{ticket.Age}} <br/>
-                Billet valable  pour la
-                {% if ticket.Slot == 1  %}
-                    journée
-                {% else %}
-                    demi journée
-                {% endif %}
+
+
+                    {% if ticket.Rate == 0 %}
+                        <h6>Billet Jeune enfant</h6>
+                    {% elseif ticket.Rate == 800 %}
+                        <h6>Billet Enfant</h6>
+                    {% elseif ticket.Rate == 1000 %}
+                        <h6>tBillet Réduit</h6>
+                    {% elseif ticket.Rate == 1200 %}
+                        <h6>Billet Adulde</h6>
+                    {% elseif ticket.Rate == 1600 %}
+                        <h6>Billet Senior</h6>
+                    {% endif %}
+
+                 valable  pour la
+                    {% if ticket.Slot == 1  %}
+                        journée
+                    {% else %}
+                        demi journée
+                    {% endif %}
+
                 du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
                 Tarif: {{ ticket.Rate /100 }} euros <br/>
 
-                Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }}{{ ticket.Age }} <br/>
+                Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }} <br/>
                 <div style="height:35px"></div>
 
 
