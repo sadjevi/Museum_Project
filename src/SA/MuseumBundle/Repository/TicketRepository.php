@@ -2,6 +2,9 @@
 
 namespace SA\MuseumBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * TicketRepository
  *
@@ -10,4 +13,16 @@ namespace SA\MuseumBundle\Repository;
  */
 class TicketRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function TicketsNbrByDate($bookedday)
+    {
+        $qb = $this->createQueryBuilder('t');
+        $qb->where('t.bookedday = :bookedday')
+           ->setParameter('bookedday', $bookedday);
+
+        $value = $qb
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $value;
+    }
 }

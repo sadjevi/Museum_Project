@@ -27,15 +27,15 @@
 
 
                     {% if ticket.Rate == 0 %}
-                        <h6>Billet Jeune enfant</h6>
+                        <h5>Billet Jeune enfant</h5>
                     {% elseif ticket.Rate == 800 %}
-                        <h6>Billet Enfant</h6>
+                        <h5>Billet Enfant</h5>
                     {% elseif ticket.Rate == 1000 %}
-                        <h6>tBillet Réduit</h6>
+                        <h5>tBillet Tarif Réduit</h5>
                     {% elseif ticket.Rate == 1200 %}
-                        <h6>Billet Adulde</h6>
+                        <h5>Billet Adulte</h5>
                     {% elseif ticket.Rate == 1600 %}
-                        <h6>Billet Senior</h6>
+                        <h5>Billet Senior</h5>
                     {% endif %}
 
                  valable  pour la
@@ -48,7 +48,7 @@
                 du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
                 Tarif: {{ ticket.Rate /100 }} euros <br/>
 
-                Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }} <br/>
+               <h6> Ref: SAT{{ ticket.Bookedday|date('Y') }}{{ ticket.Bookedday|date('d') }}{{ ticket.Bookedday|date('m') }}X0{{ ticket.Id }} </h6>
                 <div style="height:35px"></div>
 
 

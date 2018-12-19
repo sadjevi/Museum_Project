@@ -3,25 +3,38 @@
 namespace SA\MuseumBundle\Validator;
 
 
+use DateTime;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use SA\MuseumBundle\Entity\Ticket;
 
 class DayoffValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint)
+    public function validate($ticket, Constraint $constraint)
     {
-        $today = date('Y-m-d H:i:s');
-        if(date_format($value,'l') == 'Tuesday'
-        //|| date_format($value,'l') == 'Sunday'
-        || date_format($value,'d/m') == '01/05'
-        || date_format($value,'d/m') == '01/11'
-        || date_format($value,'d/m') == '25/12'
-        || $value = $today && date_format($value,'H') > '14')
 
+        $bookedday = $ticket->getBookedday();
+        $today = New \DateTime();
+        $now = date('Y-m-d');
+
+        if(
+            date_format($bookedday,'l') == 'Tuesday' ||
+            date_format($bookedday,'l') == 'Sunday'  ||
+            date_format($bookedday,'d/m') == '01/05' ||
+            date_format($bookedday,'d/m') == '01/11' ||
+            date_format($bookedday,'d/m') == '25/12' 
+        )
         {
-            $this->context->addViolation($constraint->message);
+            $this->context->buildViolation($constraint->message)
+             ->atPath('bookedday')
+             ->addViolation();
         }
+
+
+    //$bookedday = date('Y-m-d H:i:s');
+
+
+
     }
 }
 

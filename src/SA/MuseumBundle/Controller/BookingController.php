@@ -5,6 +5,7 @@ namespace SA\MuseumBundle\Controller;
 
 use DateTime;
 use SA\MuseumBundle\Entity\Booking;
+use SA\MuseumBundle\Repository\TicketRepository;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Form\BookingType;
 use SA\MuseumBundle\Form\TicketType;
@@ -77,7 +78,7 @@ class BookingController extends Controller
                 $x = $ticket->getBirthdate();
                 $y = $x->format('Y-m-d');
                 $z = new DateTime($y);
-                $now = new DateTime;
+                $now = new DateTime();
                 $interval = $z->diff($now);
                 $age = $interval->format('%Y');
 
@@ -97,10 +98,7 @@ class BookingController extends Controller
                 {
                     $ticket->setRate(0);
                 }
-                 if($ticket->getSpecialrate() > 0)
-                 {
-                     $ticket->setRate(1000);
-                 }
+
 
 
 
@@ -157,16 +155,18 @@ class BookingController extends Controller
         ));
     }
 
-   /* public function getAge($date)
+    /*public function iSfullAction()
     {
-        $ticket = New Ticket;
-        $startdate = $ticket->getBirthdate($date);
-        $interval = $startdate->diff('New\DateTime()');
-        $age = $interval$->format('%Y');
+        $repository = $this->getDoctrine()->getManager()->getRepository('SAMuseumBundle:Ticket');
+        $bookedday =;
+        $nbr = $repository->TicketsNbrByDate($bookedday);
 
-        return $age;
-
+        return $nbr >= 1000;
     }
+
+
+
+
 
     /*public function editAction($id, Request $request)
     {

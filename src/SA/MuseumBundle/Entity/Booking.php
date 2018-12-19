@@ -6,11 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
+
 /**
  * Booking
  *
  * @ORM\Table(name="booking")
  * @ORM\Entity(repositoryClass="SA\MuseumBundle\Repository\BookingRepository")
+ *
  */
 class Booking
 {
@@ -212,3 +215,4 @@ class Booking
         return $this->tickets;
     }
 }
+

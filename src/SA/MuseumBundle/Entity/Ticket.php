@@ -6,12 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use SA\MuseumBundle\Validator\Dayoff;
+use SA\MuseumBundle\Validator\Afternoon;
+
 
 /**
  * Ticket
  *
  * @ORM\Table(name="ticket")
  * @ORM\Entity(repositoryClass="SA\MuseumBundle\Repository\TicketRepository")
+ * @Dayoff()
+ * @Afternoon()
  */
 class Ticket
 {
@@ -68,18 +72,17 @@ class Ticket
      * @var bool
      *
      * @ORM\Column(name="slot", type="boolean")
+     *
      */
-    private $slot = true;
+    private $slot ;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="bookedday", type="datetime")
-     *@Assert\Range(
-     *     min = "now-1 hour",
-     *     max = "last day of December next year"
-     *     )
-     * @Dayoff()
+     * @Assert\NotBlank()
+     *
+     *
      */
     private $bookedday;
 
@@ -326,3 +329,4 @@ class Ticket
         return $this->birthdate;
     }
 }
+
