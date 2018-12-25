@@ -3,6 +3,7 @@
 
 namespace SA\MuseumBundle\Controller;
 
+use DateInterval;
 use DateTime;
 use SA\MuseumBundle\Entity\Booking;
 use SA\MuseumBundle\Repository\TicketRepository;
@@ -45,7 +46,6 @@ class BookingController extends Controller
     public function addAction(Request $request)
     {
         $booking = new Booking();
-
 
         $form = $this->createForm(BookingType::class, $booking);
 
@@ -143,17 +143,66 @@ class BookingController extends Controller
         ));
     }
 
-    public function oneDayBooksAction($bookedday)
+    /*public function oneDayBooksAction($bookedday)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('SAMuseumBundle:Ticket');
         $listTickets = $repository->findBy(array('bookedday' => $bookedday));
 
 
-
-        return $this->render('SAMuseumBundle:Ticket:view.html.twig', array(
+        return $this->render('SAMuseumBundle:Ticket:test.html.twig', array(
             'listTickets'    => $listTickets
         ));
     }
+    */
+    public function testAction()
+    {
+        $ticket = New Ticket();
+        $x = $ticket->setBookedday('2019-02-23');
+
+        $booked = new DateTime('2019-02-23');
+        $year = date_format($booked,'Y');
+        $easterDay = date('Y-m-d', easter_date($year));
+        /*$x = DateTime::createFromFormat("Y-m-d", $easterDay);*/
+        $test = date('Y-m-d', strtotime($easterDay.' + 2 DAY'));
+        $y = date('Y-m-d', strtotime($easterDay.' + 40 DAY'));
+        $z = date('Y-m-d', strtotime($easterDay.' + 51 DAY'));
+
+        /*$easter1  = $x->add(new DateInterval('P1D'));
+        $easter39 = $x->add(new DateInterval('P39D'));
+        $easter50 = $x->add(new DateInterval('P50D'));*/
+
+        var_dump($easterDay);
+        var_dump($test);
+        var_dump($y);
+        var_dump($z);
+
+
+
+
+
+
+
+
+
+
+
+        /*$bookLimit = $this->container->get('sa_museum_booklimit');
+         $bookedday = $ticket->setBookedday('2019-01-05');
+
+        if($bookLimit->isFull($bookedday))
+        {
+            throw new \Exception('Votre message a été détecté comme spam !');
+        }*/
+
+        return $this->render('SAMuseumBundle:Ticket:test.html.twig',array(
+            'easterDay' => $easterDay,
+            'test'   => $test,
+            'y'  =>  $y,
+            'z'  =>  $z
+        ));
+    }
+
+
 
     /*public function iSfullAction()
     {

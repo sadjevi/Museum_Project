@@ -22,7 +22,7 @@ class DayoffValidator extends ConstraintValidator
             date_format($bookedday,'l') == 'Sunday'  ||
             date_format($bookedday,'d/m') == '01/05' ||
             date_format($bookedday,'d/m') == '01/11' ||
-            date_format($bookedday,'d/m') == '25/12' 
+            date_format($bookedday,'d/m') == '25/12'
         )
         {
             $this->context->buildViolation($constraint->message)

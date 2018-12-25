@@ -44,3 +44,9 @@ museum_mailsend:
     path:     /book_confirmed/{id}
     defaults:
         _controller: SAMuseumBundle:Booking:mail
+
+museum_test:
+    path:    /test
+    defaults:
+        _controller: SAMuseumBundle:Booking:test
+

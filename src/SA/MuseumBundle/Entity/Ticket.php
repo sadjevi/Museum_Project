@@ -7,6 +7,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use SA\MuseumBundle\Validator\Dayoff;
 use SA\MuseumBundle\Validator\Afternoon;
+use SA\MuseumBundle\Validator\Full;
+use SA\MuseumBundle\Validator\Holiday;
 
 
 /**
@@ -16,6 +18,8 @@ use SA\MuseumBundle\Validator\Afternoon;
  * @ORM\Entity(repositoryClass="SA\MuseumBundle\Repository\TicketRepository")
  * @Dayoff()
  * @Afternoon()
+ * @Holiday()
+ *
  */
 class Ticket
 {
