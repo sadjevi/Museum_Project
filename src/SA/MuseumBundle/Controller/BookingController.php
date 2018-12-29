@@ -76,9 +76,36 @@ class BookingController extends Controller
                 $x = $ticket->getBirthdate();
                 $y = $x->format('Y-m-d');
                 $z = new DateTime($y);
+                $monthin = $x->format('m');
+                $dayin = $x->format('d');
+
                 $now = new DateTime();
                 $interval = $z->diff($now);
                 $age = $interval->format('%Y');
+                $monthout = $interval->format('%m');
+                $dayout = $interval->format('%d');
+
+                if ($monthout < $monthin && $dayin < $dayout )
+                {
+                    $age = $age -1;
+                    if($age <12 && $age >= 4)
+                    {
+                        $ticket->setRate(800);
+                    }
+                    elseif($age >= 12 && $age < 60)
+                    {
+                        $ticket->setRate(1600);
+                    }
+                    elseif($age >= 60 )
+                    {
+                        $ticket->setRate(1200);
+                    }
+                    elseif($age < 4)
+                    {
+                        $ticket->setRate(0);
+                    }
+
+                }
 
                 if($age <12 && $age >= 4)
                 {
@@ -138,7 +165,7 @@ class BookingController extends Controller
         return $this->render('SAMuseumBundle:Order:confirm.html.twig', array(
             'booking'        => $booking,
             'listTickets'    => $listTickets,
-            'age'            => $age
+
         ));
     }
 

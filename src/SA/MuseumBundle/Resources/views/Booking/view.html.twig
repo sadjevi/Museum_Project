@@ -26,6 +26,7 @@
                 Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
 
 
+
                     {% if ticket.Rate == 0 %}
                         <h5>Billet Jeune enfant</h5>
                     {% elseif ticket.Rate == 800 %}
@@ -33,9 +34,9 @@
                     {% elseif ticket.Rate == 1000 %}
                         <h5>tBillet Tarif Réduit</h5>
                     {% elseif ticket.Rate == 1200 %}
-                        <h5>Billet Adulte</h5>
-                    {% elseif ticket.Rate == 1600 %}
                         <h5>Billet Senior</h5>
+                    {% elseif ticket.Rate == 1600 %}
+                        <h5>Billet Adulte</h5>
                     {% endif %}
 
                  valable  pour la
