@@ -85,6 +85,12 @@ class Ticket
      *
      * @ORM\Column(name="bookedday", type="datetime")
      * @Assert\NotBlank()
+     * @Assert\Range(
+     *      min = "now - 1 day",
+     *      max = "first day of December next year",
+     *      minMessage = "vuos ne pouvez rentrer une date anterieur à aujourdh'ui,merci de saisir une autre date",
+     *      maxMessage = "il est impossible de reserver une date posterieure au  {{ limit }}.Merci de bien vouloir selectionner une autre date"
+     * )
      *
      *
      */

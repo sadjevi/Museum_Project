@@ -13,6 +13,7 @@ use SA\MuseumBundle\Form\TicketType;
 use SA\MuseumBundle\SAMuseumBundle;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -59,22 +60,19 @@ class BookingController extends Controller
 
             foreach ($tickets as $ticket)
             {
-                /*if($ticket->getAge() < 12 && $ticket->getAge() >=4 )
+
+                $bookedday = $ticket->getBookedday();
+                $myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findby(array(
+                    'bookedday' => $bookedday
+                ));
+                //$nbr = count($myTickets);
+                $limit = $this->container->get('sa_museum.limit');
+
+                if ($limit->isFull($myTickets))
                 {
-                    $ticket->setRate(800);
+                    throw new Exception('il est impossible de reserver à la date selectionnée');
+
                 }
-                if($ticket->getAge() >=12 && $ticket->getAge() <60)
-                {
-                    $ticket->setRate(1600);
-                }
-                if($ticket->getAge()  >=60)
-                {
-                    $ticket->setRate(1200);
-                }
-                if($ticket->getAge()  <4 )
-                {
-                    $ticket->setRate(0);
-                }*/
                 $x = $ticket->getBirthdate();
                 $y = $x->format('Y-m-d');
                 $z = new DateTime($y);
@@ -139,7 +137,8 @@ class BookingController extends Controller
 
         return $this->render('SAMuseumBundle:Order:confirm.html.twig', array(
             'booking'        => $booking,
-            'listTickets'    => $listTickets
+            'listTickets'    => $listTickets,
+            'age'            => $age
         ));
     }
 
@@ -156,35 +155,25 @@ class BookingController extends Controller
     */
     public function testAction()
     {
-        $ticket = New Ticket();
-        $x = $ticket->setBookedday('2019-02-23');
 
-        $booked = new DateTime('2019-02-23');
-        $year = date_format($booked,'Y');
-        $easterDay = date('Y-m-d', easter_date($year));
-        /*$x = DateTime::createFromFormat("Y-m-d", $easterDay);*/
-        $test = date('Y-m-d', strtotime($easterDay.' + 2 DAY'));
-        $y = date('Y-m-d', strtotime($easterDay.' + 40 DAY'));
-        $z = date('Y-m-d', strtotime($easterDay.' + 51 DAY'));
 
-        /*$easter1  = $x->add(new DateInterval('P1D'));
-        $easter39 = $x->add(new DateInterval('P39D'));
-        $easter50 = $x->add(new DateInterval('P50D'));*/
+        $bookedday = new DateTime('2018-12-23');
+        $em = $this->getDoctrine()->getManager();
+        $myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findby(array(
+            'bookedday' => $bookedday
+        ));
+        $nbr = count($myTickets);
+        $limit = $this->container->get('sa_museum.limit');
 
-        var_dump($easterDay);
-        var_dump($test);
-        var_dump($y);
-        var_dump($z);
+        if ($limit->isFull($myTickets))
+        {
+            throw new Exception('il est impossible de reserver à la date selectionnée');
+
+        }
 
 
 
-
-
-
-
-
-
-
+       /* myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findBy(array('booking' => $booking));*/
 
         /*$bookLimit = $this->container->get('sa_museum_booklimit');
          $bookedday = $ticket->setBookedday('2019-01-05');
@@ -195,10 +184,9 @@ class BookingController extends Controller
         }*/
 
         return $this->render('SAMuseumBundle:Ticket:test.html.twig',array(
-            'easterDay' => $easterDay,
-            'test'   => $test,
-            'y'  =>  $y,
-            'z'  =>  $z
+            'myTickets' => $myTickets,
+            'nbr' => $nbr
+
         ));
     }
 

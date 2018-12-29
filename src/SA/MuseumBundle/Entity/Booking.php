@@ -30,6 +30,7 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="bookedat", type="datetime")
+     *
      */
     private $bookedat;
 

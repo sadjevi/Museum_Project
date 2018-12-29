@@ -2,5 +2,5 @@ services:
 #    sa_museum.example:
 #        class: SA\MuseumBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
-     sa_museum_booklimit:
-         class: SA\MuseumBundle\BookLimit\SABookLimit
+     sa_museum.limit:
+         class: SA\MuseumBundle\Limit\SALimit
