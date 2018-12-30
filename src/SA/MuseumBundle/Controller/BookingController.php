@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use SendGrid;
+use SA\MuseumBundle\Birthday;
 
 class BookingController extends Controller
 {
@@ -61,6 +62,7 @@ class BookingController extends Controller
             foreach ($tickets as $ticket)
             {
 
+                $birthdate = $ticket->getBirthdate();
                 $bookedday = $ticket->getBookedday();
                 $myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findby(array(
                     'bookedday' => $bookedday
@@ -73,60 +75,25 @@ class BookingController extends Controller
                     throw new Exception('il est impossible de reserver à la date selectionnée');
 
                 }
-                $x = $ticket->getBirthdate();
-                $y = $x->format('Y-m-d');
-                $z = new DateTime($y);
-                $monthin = $x->format('m');
-                $dayin = $x->format('d');
-
-                $now = new DateTime();
-                $interval = $z->diff($now);
-                $age = $interval->format('%Y');
-                $monthout = $interval->format('%m');
-                $dayout = $interval->format('%d');
-
-                if ($monthout < $monthin && $dayin < $dayout )
-                {
-                    $age = $age -1;
-                    if($age <12 && $age >= 4)
-                    {
-                        $ticket->setRate(800);
-                    }
-                    elseif($age >= 12 && $age < 60)
-                    {
-                        $ticket->setRate(1600);
-                    }
-                    elseif($age >= 60 )
-                    {
-                        $ticket->setRate(1200);
-                    }
-                    elseif($age < 4)
-                    {
-                        $ticket->setRate(0);
-                    }
-
-                }
+                $q  = new Birthday\SABday();
+                $age  = $q->isbehind($birthdate);
 
                 if($age <12 && $age >= 4)
                 {
                     $ticket->setRate(800);
                 }
-                if($age >= 12 && $age < 60)
+                elseif($age >= 12 && $age < 60)
                 {
                     $ticket->setRate(1600);
                 }
-                if($age >= 60 )
+                elseif($age >= 60 )
                 {
                     $ticket->setRate(1200);
                 }
-                if($age < 4)
+                elseif($age < 4)
                 {
                     $ticket->setRate(0);
                 }
-
-
-
-
                 $total = $total + $ticket->getRate();
                 $ticket->setBooking($booking);
             }
