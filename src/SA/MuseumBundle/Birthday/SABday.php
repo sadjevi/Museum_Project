@@ -4,13 +4,6 @@
 namespace SA\MuseumBundle\Birthday;
 
 
-
-
-
-
-
-
-
 use DateTime;
 use SA\MuseumBundle\Entity\Ticket;
 

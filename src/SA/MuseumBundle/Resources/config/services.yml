@@ -7,3 +7,6 @@ services:
 
      sa_museum.bday:
          class: SA\MuseumBundle\Birthday\SABday
+
+     sa_museum.charge:
+         class: SA\MuseumBundle\Price\SACharge

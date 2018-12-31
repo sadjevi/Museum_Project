@@ -5,7 +5,10 @@ namespace SA\MuseumBundle\Controller;
 
 use DateInterval;
 use DateTime;
+use mysql_xdevapi\Session;
 use SA\MuseumBundle\Entity\Booking;
+use SA\MuseumBundle\Price\SACharge;
+use SA\MuseumBundle\Rate\SARate;
 use SA\MuseumBundle\Repository\TicketRepository;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Form\BookingType;
@@ -31,8 +34,8 @@ class BookingController extends Controller
     {
         // Ici, on récupérera la resa  correspondante à l'id $id
 
-        $em = $this->getDoctrine()->getManager();
-        $booking = $em->getRepository('SAMuseumBundle:Booking')->find($id);
+        $em          = $this->getDoctrine()->getManager();
+        $booking     = $em->getRepository('SAMuseumBundle:Booking')->find($id);
         if (null === $booking)
         {
             throw new NotFoundHttpException("La commande d'id ".$id." n'existe pas.");
@@ -48,16 +51,15 @@ class BookingController extends Controller
     public function addAction(Request $request)
     {
         $booking = new Booking();
-
-        $form = $this->createForm(BookingType::class, $booking);
+        $form    = $this->createForm(BookingType::class, $booking);
 
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
 
-            $em = $this->getDoctrine()->getManager();
+            $em      = $this->getDoctrine()->getManager();
             $tickets = $booking->getTickets();
-            $total = 0;
+            $total   = 0;
 
             foreach ($tickets as $ticket)
             {
@@ -67,43 +69,32 @@ class BookingController extends Controller
                 $myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findby(array(
                     'bookedday' => $bookedday
                 ));
-                //$nbr = count($myTickets);
-                $limit = $this->container->get('sa_museum.limit');
+
+                $limit     = $this->container->get('sa_museum.limit');
 
                 if ($limit->isFull($myTickets))
                 {
                     throw new Exception('il est impossible de reserver à la date selectionnée');
+                }
 
-                }
-                $q  = new Birthday\SABday();
-                $age  = $q->isbehind($birthdate);
+                $q         = new Birthday\SABday();
+                $age       = $q->isbehind($birthdate);
 
-                if($age <12 && $age >= 4)
-                {
-                    $ticket->setRate(800);
-                }
-                elseif($age >= 12 && $age < 60)
-                {
-                    $ticket->setRate(1600);
-                }
-                elseif($age >= 60 )
-                {
-                    $ticket->setRate(1200);
-                }
-                elseif($age < 4)
-                {
-                    $ticket->setRate(0);
-                }
-                $total = $total + $ticket->getRate();
+                $SARate    = new SACharge();
+                $s         = $SARate->getPrice($age);
+
+                $ticket->setRate($s);
+                $total     = $total + $s;
                 $ticket->setBooking($booking);
             }
 
            $booking->setRate($total);
            $em->persist($booking);
-
            $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice', 'Reservation bien enregistrée.');
+
+
+            $request->getSession()->getFlashbag()->add('notice', 'Reservation bien enregistrée.');
            // $this->mailAction($id);
 
             return $this->redirectToRoute('sa_museum_view', array('id' => $booking->getId()));
@@ -114,10 +105,10 @@ class BookingController extends Controller
 
     public function mailAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $booking = $em->getRepository('SAMuseumBundle:Booking')->find($id);
-        $listTickets = $em->getRepository('SAMuseumBundle:Ticket')->findBy(array('booking' => $booking));
-        $message = (new \Swift_Message('Confirmation de reservation'));
+        $em           = $this->getDoctrine()->getManager();
+        $booking      = $em->getRepository('SAMuseumBundle:Booking')->find($id);
+        $listTickets  = $em->getRepository('SAMuseumBundle:Ticket')->findBy(array('booking' => $booking));
+        $message      = (new \Swift_Message('Confirmation de reservation'));
         $message
             ->setFrom('devmail@louvremuseum.com')
             ->setTo('sadjevi@me.com')
@@ -136,17 +127,7 @@ class BookingController extends Controller
         ));
     }
 
-    /*public function oneDayBooksAction($bookedday)
-    {
-        $repository = $this->getDoctrine()->getManager()->getRepository('SAMuseumBundle:Ticket');
-        $listTickets = $repository->findBy(array('bookedday' => $bookedday));
 
-
-        return $this->render('SAMuseumBundle:Ticket:test.html.twig', array(
-            'listTickets'    => $listTickets
-        ));
-    }
-    */
     public function testAction()
     {
 
@@ -167,37 +148,12 @@ class BookingController extends Controller
 
 
 
-       /* myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findBy(array('booking' => $booking));*/
-
-        /*$bookLimit = $this->container->get('sa_museum_booklimit');
-         $bookedday = $ticket->setBookedday('2019-01-05');
-
-        if($bookLimit->isFull($bookedday))
-        {
-            throw new \Exception('Votre message a été détecté comme spam !');
-        }*/
-
         return $this->render('SAMuseumBundle:Ticket:test.html.twig',array(
             'myTickets' => $myTickets,
             'nbr' => $nbr
 
         ));
     }
-
-
-
-    /*public function iSfullAction()
-    {
-        $repository = $this->getDoctrine()->getManager()->getRepository('SAMuseumBundle:Ticket');
-        $bookedday =;
-        $nbr = $repository->TicketsNbrByDate($bookedday);
-
-        return $nbr >= 1000;
-    }
-
-
-
-
 
     /*public function editAction($id, Request $request)
     {
