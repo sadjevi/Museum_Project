@@ -5,6 +5,8 @@ namespace SA\MuseumBundle\Controller;
 
 use DateInterval;
 use DateTime;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use mysql_xdevapi\Session;
 use SA\MuseumBundle\Entity\Booking;
 use SA\MuseumBundle\Price\SACharge;
@@ -14,6 +16,7 @@ use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Form\BookingType;
 use SA\MuseumBundle\Form\TicketType;
 use SA\MuseumBundle\SAMuseumBundle;
+use SA\MuseumBundle\Services\BookingManager;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -27,6 +30,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use SendGrid;
 use SA\MuseumBundle\Birthday;
+
 
 class BookingController extends Controller
 {
@@ -52,45 +56,18 @@ class BookingController extends Controller
     {
         $booking = new Booking();
         $form    = $this->createForm(BookingType::class, $booking);
+        $em = $this->getDoctrine()->getManager();
+
+
+
 
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-
-            $em      = $this->getDoctrine()->getManager();
-            $tickets = $booking->getTickets();
-            $total   = 0;
-
-            foreach ($tickets as $ticket)
-            {
-
-                $birthdate = $ticket->getBirthdate();
-                $bookedday = $ticket->getBookedday();
-                $myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findby(array(
-                    'bookedday' => $bookedday
-                ));
-
-                $limit     = $this->container->get('sa_museum.limit');
-
-                if ($limit->isFull($myTickets))
-                {
-                    throw new Exception('il est impossible de reserver à la date selectionnée');
-                }
-
-                $q         = new Birthday\SABday();
-                $age       = $q->isbehind($birthdate);
-
-                $SARate    = new SACharge();
-                $s         = $SARate->getPrice($age);
-
-                $ticket->setRate($s);
-                $total     = $total + $s;
-                $ticket->setBooking($booking);
-            }
-
-           $booking->setRate($total);
-           $em->persist($booking);
-           $em->flush();
+            $bookingManager = new BookingManager($em);
+            $book           = $bookingManager->isValid($booking);
+            $em->persist($book);
+            $em->flush();
 
 
 
@@ -132,27 +109,13 @@ class BookingController extends Controller
     {
 
 
-        $bookedday = new DateTime('2018-12-23');
-        $em = $this->getDoctrine()->getManager();
-        $myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findby(array(
-            'bookedday' => $bookedday
-        ));
-        $nbr = count($myTickets);
-        $limit = $this->container->get('sa_museum.limit');
-
-        if ($limit->isFull($myTickets))
-        {
-            throw new Exception('il est impossible de reserver à la date selectionnée');
-
-        }
 
 
 
-        return $this->render('SAMuseumBundle:Ticket:test.html.twig',array(
-            'myTickets' => $myTickets,
-            'nbr' => $nbr
 
-        ));
+        return $this->render('SAMuseumBundle:Ticket:test.html.twig');
+
+
     }
 
     /*public function editAction($id, Request $request)

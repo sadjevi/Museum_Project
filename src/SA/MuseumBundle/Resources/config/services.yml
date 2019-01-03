@@ -10,3 +10,7 @@ services:
 
      sa_museum.charge:
          class: SA\MuseumBundle\Price\SACharge
+
+     sa_museum.bookingservice:
+         class: SA\MuseumBundle\Services\BookingManager
+         arguments: ["@doctrine.orm.entity_manager"]
