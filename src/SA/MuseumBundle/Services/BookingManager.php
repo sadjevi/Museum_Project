@@ -27,67 +27,95 @@ class BookingManager
 
     public function isValid(booking $booking)
     {
-        $em = $this->em;
-        $tickets = $booking->getTickets();
-        $total = 0;
+        $tickets  = $booking->getTickets();
+        $total    = 0;
 
         foreach ($tickets as $ticket)
         {
 
-            $birthdate = $ticket->getBirthdate();
-            $bookedday = $ticket->getBookedday();
-            $myTickets = $em->getRepository('SAMuseumBundle:Ticket')->findby(array('bookedday' => $bookedday));
-
-            if (count($myTickets) >= 3)
+            if ($this->isFull($ticket))
             {
                 throw new Exception('il est impossible de reserver à la date selectionnée');
             }
 
-                $x = $birthdate;
-                $y = $x->format('Y-m-d');
-                $z = new DateTime($y);
-                $monthin = $x->format('m');
-                $dayin = $x->format('d');
-                $now = new DateTime();
-                $interval = $z->diff($now);
-                $age = $interval->format('%Y');
-                $monthout = $interval->format('%m');
-                $dayout = $interval->format('%d');
+            $myAge  = $this->getAge($ticket);
+            $myRate = $this->getMyRate($myAge);
+            $ticket->setRate($myRate);
+            $total  = $total + $myRate;
+            $ticket->setBooking($booking);
 
-                if ($monthout < $monthin && $dayin < $dayout)
-                {
-                    $birthday = $age - 1;
-                }
+        }
+        $booking->setRate($total);
 
-                else
-                {
-                    $birthday = $age;
-                }
-
-                if ($birthday < 12 && $birthday >= 4)
-                {
-                    $ticket->setRate(800);
-                }
-                elseif ($birthday >= 12 && $birthday < 60)
-                {
-                    $ticket->setRate(1600);
-                }
-                elseif ($birthday >= 60)
-                {
-                    $ticket->setRate(1200);
-                }
-                elseif ($birthday < 4)
-                {
-                    $ticket->setRate(0);
-                }
-
-                $total = $total + $ticket->getRate();
-                $ticket->setBooking($booking);
-            }
-            $booking->setRate($total);
-
-            return $booking;
+        return $booking;
+        $em->persist($booking);
+        $em->flush();
     }
 
-    
+    public function isFull(ticket $ticket)
+    {
+        $em         = $this->em;
+        $bookedday  = $ticket->getBookedday();
+        $myTickets  = $em->getRepository('SAMuseumBundle:Ticket')->findby(array('bookedday' => $bookedday));
+
+        $ticketsNbr = count($myTickets);
+
+        return $ticketsNbr >= 3;
+    }
+
+    public function getAge(ticket $ticket)
+    {
+        $birthdate = $ticket->getBirthdate();
+        $x         = $birthdate;
+        $y         = $x->format('Y-m-d');
+        $z         = new DateTime($y);
+        $monthin   = $x->format('m');
+        $dayin     = $x->format('d');
+        $now       = new DateTime();
+        $interval  = $z->diff($now);
+        $age       = $interval->format('%Y');
+        $monthout  = $interval->format('%m');
+        $dayout    = $interval->format('%d');
+
+
+        if( $monthout < $monthin && $dayin < $dayout)
+        {
+            $myAge = $age - 1;
+        }
+        else
+        {
+            $myAge = $age;
+        }
+
+        return $myAge;
+    }
+
+    public function getMyRate($myAge)
+    {
+        $a = $myAge;
+        $ticket= new Ticket();
+
+        if ($a < 12 && $a >= 4)
+        {
+            $ticket->setRate(800);
+        }
+        elseif ($a >= 12 && $a < 60)
+        {
+            $ticket->setRate(1600);
+        }
+        elseif ($a >= 60)
+        {
+            $ticket->setRate(1200);
+        }
+        elseif ($a < 4)
+        {
+            $ticket->setRate(0);
+        }
+
+        $myRate = $ticket->getRate();
+
+        return $myRate;
+    }
+
+
 }
