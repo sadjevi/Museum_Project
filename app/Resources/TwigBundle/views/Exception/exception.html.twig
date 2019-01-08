@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+   date non valide  - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<h3>Date invalide</strong></h3>
+
+
+    {% block projectmuseum_body %}
+
+        <div class="jumbotron">
+            <h1 class="display-3">OOps,</h1>
+            <p class="lead">
+                Il semblerait que le Musée du Louvre ait malheureusement été victime de son succès.... ;)</p>
+            <hr class="my-4">
+            <p>Pour votre confort,le nombre de visiteurs est limité à 1000 visiteurs/jour.<br>
+            Merci donc de bien vouloir sélectionner une autre date</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('sa_museum_add') }}" role="button">Retour à la réservation</a>
+            </p>
+        </div>
+
+
+    {% endblock %}
+
+{% endblock %}
