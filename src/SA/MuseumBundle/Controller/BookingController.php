@@ -6,6 +6,7 @@ namespace SA\MuseumBundle\Controller;
 use DateInterval;
 use DateTime;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use mysql_xdevapi\Session;
 use SA\MuseumBundle\Entity\Booking;
@@ -52,20 +53,16 @@ class BookingController extends Controller
         ));
     }
 
-    public function addAction(Request $request)
+    public function addAction(Request $request, BookingManager $bookingManager)
     {
         $booking = new Booking();
         $form    = $this->createForm(BookingType::class, $booking);
-        $em = $this->getDoctrine()->getManager();
-
-
-
+        $em      = $this->getDoctrine()->getManager();
 
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $bookingManager = new BookingManager($em);
-            $book           = $bookingManager->isValid($booking);
+            $book = $bookingManager->isValid($booking);
             $em->persist($book);
             $em->flush();
 
@@ -88,8 +85,8 @@ class BookingController extends Controller
         $message      = (new \Swift_Message('Confirmation de reservation'));
         $message
             ->setFrom('devmail@louvremuseum.com')
-            ->setTo('sadjevi@me.com')
-            ->setSubject('Subject')
+            ->setTo('dev@ivejdas.com')
+            ->setSubject('Votre reservation au Musée du Louvre')
             ->setBody($this->renderView('Email/mail.html.twig',
                 array(
                     'booking'        => $booking,
@@ -107,14 +104,7 @@ class BookingController extends Controller
 
     public function testAction()
     {
-
-
-
-
-
-
         return $this->render('SAMuseumBundle:Ticket:test.html.twig');
-
 
     }
 

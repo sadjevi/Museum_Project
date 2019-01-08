@@ -14,16 +14,18 @@
         <div style="height:50px"></div>
 
         Votre reservation est à présent bien enregistré pour: </br>
+        <div style="height:10px"></div>
+
 
         {% for ticket in listTickets %}
 
-            la {% if ticket.Slot == 1  %}
+            -la {% if ticket.Slot == 1  %}
                     journée
                 {% else %}
                     demi journée
                 {% endif %}
             du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
-            <div style="height:30px"></div>
+
 
         {% endfor %}
         <div style="height:50px"></div>
@@ -33,7 +35,7 @@
 
         Nous vous remercions et avons hâte de vous faire découvrir le plus grand musée d'art et d'antiquités au monde <br>
 
-        à bientôt!!
+        à bientôt!!<br>
 
 
         <a class="btn btn-succes"  href="{{ path('sa_museum_homepage',  { 'id': booking.id }) }}"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Retour à l'accueil</a>

@@ -2,56 +2,87 @@
 
 namespace Tests\SA\MuseumBundle\Services;
 
+use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use SA\MuseumBundle\Entity\Booking;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Services\BookingManager;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
-class BookingManagerTest extends TestCase
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class BookingManagerTest extends WebTestCase
 {
-    public function testMuseumIsFull()
+
+    public function testRateIfAgeIsUnder4()
     {
-        $booking = new Booking();
-        $booking->setRate('5400');
-        $booking->setTicketsnbr('3');
-        $booking->setMail('tartenpion@sfr.com');
+        $argMock = $this->createMock(EntityManagerInterface::class);
+        $myClass = new BookingManager($argMock);
+        $result  = $myClass->getMyRate('3');
 
+        $this->assertSame(0, $result);
 
-        $ticket1 = new Ticket();
+    }
 
-        $ticket1->setName('one');
-        $ticket1->setForename('fone');
-        $ticket1->setBirthdate('01/12/1978');
-        $ticket1->setCountry('france');
-        $ticket1->setRate('1800');
-        $ticket1->setSlot(false);
-        $ticket1->setSpecialrate(false);
+    public function testRateIfAgeIsOver60()
+    {
+        $argMock = $this->createMock(EntityManagerInterface::class);
+        $myClass = new BookingManager($argMock);
+        $result  = $myClass->getMyRate(67);
 
-        $ticket2 = new Ticket();
-        $ticket2->setName('one');
-        $ticket2->setForename('fone');
-        $ticket2->setBirthdate('01/12/1978');
-        $ticket2->setCountry('france');
-        $ticket2->setRate('1800');
-        $ticket2->setSlot(false);
-        $ticket2->setSpecialrate(false);
+        $this->assertSame(1200, $result);
 
-        $ticket3 = new Ticket();
-        $ticket3->setName('one');
-        $ticket3->setForename('fone');
-        $ticket3->setBirthdate('01/12/1978');
-        $ticket3->setCountry('france');
-        $ticket3->setRate('1800');
-        $ticket3->setSlot(false);
-        $ticket3->setSpecialrate(false);
+    }
 
-        $ticket1->setBooking($booking);
-        $ticket2->setBooking($booking);
-        $ticket3->setBooking($booking);
+    public function testRateIfAgeIsBetween12And60()
+    {
+        $argMock = $this->createMock(EntityManagerInterface::class);
+        $myClass = new BookingManager($argMock);
+        $result  = $myClass->getMyRate('34');
 
+        $this->assertSame(1600, $result);
 
+    }
 
+    public function testFullMuseum()
+    {
+        $argMock = $this->createMock(EntityManagerInterface::class);
+        $myClass = new BookingManager($argMock);
+        $result  = $myClass->isFull('3');
 
+        $this->assertSame(true, $result);
+
+    }
+
+    public function testAgeWhenBirthdayisExpected()
+    {
+
+        $argMock = $this->createMock(EntityManagerInterface::class);
+        $myClass = new BookingManager($argMock);
+        $ticket  = new Ticket();
+        $d       = \DateTime::createFromFormat('Y-m-d', '1949-01-30');
+        $ticket->setBirthdate($d);
+        $ticket->getBirthdate();
+        $result  = $myClass->getAge($ticket);
+
+        $this->assertSame('69', $result);
+
+    }
+
+    public function testAgeWhenBirthdayIsPassed()
+    {
+
+        $argMock = $this->createMock(EntityManagerInterface::class);
+        $myClass = new BookingManager($argMock);
+        $ticket  = new Ticket();
+        $d       = \DateTime::createFromFormat('Y-m-d', '1948-01-30');
+        $ticket->setBirthdate($d);
+        $ticket->getBirthdate();
+        $result  = $myClass->getAge($ticket);
+
+        $this->assertSame('70', $result);
     }
 }

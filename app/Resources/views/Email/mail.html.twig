@@ -1,45 +1,67 @@
 
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<head>
+        <meta charset="utf-8">
+        <title>{% block title %}LOUVRE MUSEUM{% endblock %}</title>
+
+        {% block stylesheets %}
+                {# On charge le CSS de bootstrap depuis le site directement #}
+                <link rel="stylesheet" href=https://bootswatch.com/4/flatly/bootstrap.min.css>
+        {% endblock %}
+</head>
 
 
-<h4>commande SAlm000{{ booking.Id}} </h4>
-<div style="height:100px"></div>
-<h5><strong>prix total de la commande:{{ booking.Rate / 100 }}€</strong></h5>
-<h5>date réservation: {{ booking.bookedat|date('d/m/Y') }}</h5>
-<h6>Nombre de billets:{{ booking.Ticketsnbr}}</h6>
+        <div class="jumbotron">
+                <h2 class="display-3">Confirmation de Réservation</h2>
+                <p class="lead">Bonjour, Nous avons bien enregistré votre commande et nous vous remercions.<br>
+                Ce mail faisant office de billet, nous vous prions de bien vouloir l 'imprimer afin de le présenter
+                à l'entrée du musée</p>
+
+                <hr class="my-4">
+                <h2>Commande SAlm000{{ booking.Id}} </h2>
+                <p class="lead"><strong>prix total de la commande:{{ booking.Rate / 100 }}€</strong><br>
+                Date réservation: {{ booking.bookedat|date('d/m/Y') }}<br>
+                Nombre de billets:{{ booking.Ticketsnbr}}</p>
+
+                <hr class="my-4">
+                <p>Dans le cas òu vous auriez selectionné un tarif spécial, merci Conformément à nos conditions
+                de vente de bien vouloir prévoir  un justificatif.</p>
+                <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="{{ path('sa_museum_infos') }}" role="button">En savoir plus</a>
+                </p>
+        </div>
+
+
+
 <div style="height:50px"></div>
 <div style="height:50px"></div>
 
 {% for ticket in listTickets %}
         {% dump ticket %}
+        <div class="card text-white bg-success mb-3" style="max-width: 500rem;">
+                <div class="card-header">
+                        Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }} <br/>
+                </div>
+                <div class="card-body">
+                        <h4 class="card-title">Mr/mme {{ ticket.Name }} {{ ticket.Forename }}</h4>
+                        <p class="card-text">
+                                Billet valable  pour la
+                                {% if ticket.Slot == 1  %}
+                                        journée
+                                {% else %}
+                                        demi journée
+                                {% endif %}
+                                du {{ ticket.Bookedday|date('d/m/Y') }}
+                        </p>
+        </div>
+        </div>
+                <div style="height:35px"></div>
 
-        Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
-        Age {{ Age }} <br/>
-        Billet valable  pour la
-        {% if ticket.Slot == 1  %}
-            journée
-        {% else %}
-            demi journée
-        {% endif %}
-        du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
 
-{#% set ticketrate = ticket.rate %}
-
-   {% switch ticket.Rate %}
-    {% case "0" %}
-       {{jeune enfant}}
-
-    {% case "1200" %}
-       {{senior }}
-
-    {% case "1600" %}
-       {{normal }}
-
-    {% case "800" %}
-       {{enfant }}
-   {% endswitch %#}
-
-        Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }}{{ ticket.Age }} <br/>
-        <div style="height:35px"></div>
 {% endfor %}
 
+{% endblock %}
 

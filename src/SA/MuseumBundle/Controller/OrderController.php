@@ -41,7 +41,7 @@ class OrderController extends Controller
                 "amount" => $rate  , // Amount in cents
                 "currency" => "eur",
                 "source" => $token,
-                "description" => "Paiement Stripe - OpenClassrooms Exemple"
+                "description" => "Reservation - Louvre_Munseum"
             ));
             $this->addFlash('info', "success","Bravo ça marche !");
             return $this->redirectToRoute("museum_mailsend", array('id' => $booking->getId()));

@@ -14,3 +14,13 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
+    SA\MuseumBundle\:
+        resource: '../../src/SA/MuseumBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/SA/MuseumBundle/{Entity,Repository,Tests}'
+
+    SA\MuseumBundle\Controller\:
+        resource: '../../src/SA/MuseumBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']

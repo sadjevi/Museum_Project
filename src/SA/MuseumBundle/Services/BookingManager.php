@@ -18,9 +18,10 @@ use Doctrine\ORM\EntityManager;
 class BookingManager
 {
 
+
     private $em;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager = null)
     {
         $this->em = $entityManager;
     }
@@ -32,8 +33,12 @@ class BookingManager
 
         foreach ($tickets as $ticket)
         {
+            $em         = $this->em;
+            $bookedday  = $ticket->getBookedday();
+            $myTickets  = $em->getRepository('SAMuseumBundle:Ticket')->findby(array('bookedday' => $bookedday));
+            $ticketsNbr = count($myTickets);
 
-            if ($this->isFull($ticket))
+            if ($this->isFull($ticketsNbr))
             {
                 throw new Exception('il est impossible de reserver à la date selectionnée');
             }
@@ -43,22 +48,20 @@ class BookingManager
             $ticket->setRate($myRate);
             $total  = $total + $myRate;
             $ticket->setBooking($booking);
-
         }
         $booking->setRate($total);
-
-        return $booking;
+        $em = $this->em;
         $em->persist($booking);
         $em->flush();
+
+        return $booking;
+
+
+
     }
 
-    public function isFull(ticket $ticket)
+    public function isFull($ticketsNbr)
     {
-        $em         = $this->em;
-        $bookedday  = $ticket->getBookedday();
-        $myTickets  = $em->getRepository('SAMuseumBundle:Ticket')->findby(array('bookedday' => $bookedday));
-
-        $ticketsNbr = count($myTickets);
 
         return $ticketsNbr >= 3;
     }
