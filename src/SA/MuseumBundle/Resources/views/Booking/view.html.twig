@@ -7,7 +7,7 @@
 {% block body %}
 
     {% block projectmuseum_body %}
-
+    
         <h4>commande SAlm000{{ booking.Id}} </h4>
         <div style="height:100px"></div>
         <h5><strong>prix total de la commande:{{ booking.Rate / 100 }}€</strong></h5>
@@ -19,39 +19,32 @@
 
         {% for ticket in listTickets %}
 
-
-
-
-
                 Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
 
+                {% if ticket.Rate == 0 %}
+                    <h5>Billet Jeune enfant</h5>
+                {% elseif ticket.Rate == 800 %}
+                    <h5>Billet Enfant</h5>
+                {% elseif ticket.Rate == 1000 %}
+                    <h5>tBillet Tarif Réduit</h5>
+                {% elseif ticket.Rate == 1200 %}
+                    <h5>Billet Senior</h5>
+                {% elseif ticket.Rate == 1600 %}
+                    <h5>Billet Adulte</h5>
+                {% endif %}
 
-
-                    {% if ticket.Rate == 0 %}
-                        <h5>Billet Jeune enfant</h5>
-                    {% elseif ticket.Rate == 800 %}
-                        <h5>Billet Enfant</h5>
-                    {% elseif ticket.Rate == 1000 %}
-                        <h5>tBillet Tarif Réduit</h5>
-                    {% elseif ticket.Rate == 1200 %}
-                        <h5>Billet Senior</h5>
-                    {% elseif ticket.Rate == 1600 %}
-                        <h5>Billet Adulte</h5>
-                    {% endif %}
-
-                 valable  pour la
-                    {% if ticket.Slot == 1  %}
-                        journée
-                    {% else %}
-                        demi journée
-                    {% endif %}
+                valable  pour la
+                {% if ticket.Slot == 1  %}
+                    journée
+                {% else %}
+                    demi journée
+                {% endif %}
 
                 du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
                 Tarif: {{ ticket.Rate /100 }} euros <br/>
 
                <h6> Ref: SAT{{ ticket.Bookedday|date('Y') }}{{ ticket.Bookedday|date('d') }}{{ ticket.Bookedday|date('m') }}X0{{ ticket.Id }} </h6>
-                <div style="height:35px"></div>
-
+               <div style="height:35px"></div>
 
         {% endfor %}
 
