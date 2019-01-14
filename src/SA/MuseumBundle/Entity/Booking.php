@@ -51,6 +51,7 @@ class Booking
      * @var float
      *
      * @ORM\Column(name ="rate", type="float")
+     * &Assert\NotBlank(message = "Ce champ doit être rempli.")
      * @Assert\Type(type="float")
      */
     private $rate;

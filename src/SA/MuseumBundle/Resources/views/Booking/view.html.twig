@@ -8,6 +8,18 @@
 
     {% block projectmuseum_body %}
 
+
+        {# templates/base.html.twig #}
+
+        {# you can read and display just one flash message type... #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+
         <h4>commande SAlm000{{ booking.Id}} </h4>
         <div style="height:100px"></div>
         <h5><strong>prix total de la commande:{{ booking.Rate / 100 }}€</strong></h5>
@@ -19,13 +31,7 @@
 
         {% for ticket in listTickets %}
 
-
-
-
-
                 Mr/mme {{ ticket.Name }} {{ ticket.Forename }} <br/>
-
-
 
                     {% if ticket.Rate == 0 %}
                         <h5>Billet Jeune enfant</h5>
@@ -39,7 +45,7 @@
                         <h5>Billet Adulte</h5>
                     {% endif %}
 
-                 valable  pour la
+                valable  pour la
                     {% if ticket.Slot == 1  %}
                         journée
                     {% else %}
@@ -60,3 +66,4 @@
     {% endblock %}
 
 {% endblock %}
+

@@ -6,6 +6,12 @@
 
 {% block projectmuseum_body %}
 
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h2>Reservation d'un billet</h2>
 
     {{ include("SAMuseumBundle:Booking:form.html.twig") }}

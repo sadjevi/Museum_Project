@@ -3,7 +3,6 @@
 
 namespace SA\MuseumBundle\Controller;
 
-use DateInterval;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,15 +62,14 @@ class BookingController extends Controller
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $book = $bookingManager->isValid($booking);
+            if(!$book = $bookingManager->isValid($request, $booking)){
+
+                return $this->render('SAMuseumBundle:Booking:add.html.twig', array('form' => $form->createView()));
+            }
             $em->persist($book);
             $em->flush();
 
-
-
-            $request->getSession()->getFlashbag()->add('notice', 'Reservation bien enregistrée.');
-            $request->get('session')->getFlashbag($book)->add('notice', 'Reservation bien enregistrée.');
-           // $this->mailAction($id);
+            $request->getSession()->getFlashbag()->add('success', 'Reservation bien enregistrée.');
 
             return $this->redirectToRoute('sa_museum_view', array('id' => $booking->getId()));
         }
@@ -104,26 +102,5 @@ class BookingController extends Controller
 
         ));
     }
-
-
-    public function testAction()
-    {
-        return $this->render('SAMuseumBundle:Ticket:test.html.twig');
-
-    }
-
-    /*public function editAction($id, Request $request)
-    {
-        // Ici, on récupérera la resa correspondante à $id
-
-        // Même mécanisme que pour l'ajout
-        if ($request->isMethod('POST')) {
-            $request->getSession()->getFlashBag()->add('notice', 'reservation bien modifiée.');
-
-            return $this->redirectToRoute('sa_platform_view', array('id' => 5));
-        }
-
-        return $this->render('OCPlatformBundle:Advert:edit.html.twig');
-    }*/
 
 }

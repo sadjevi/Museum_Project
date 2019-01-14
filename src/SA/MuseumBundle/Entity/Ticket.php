@@ -41,7 +41,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message = "Ce champ doit être rempli.")
      * @Assert\Length(
      *     min =2,
      *     max = 15,
@@ -55,7 +55,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="forename", type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message = "Ce champ doit être rempli.")
      * @Assert\Length(
      *     min = 2,
      *     max = 15,

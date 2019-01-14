@@ -19,14 +19,15 @@ class TicketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        setlocale(LC_TIME, "fr_FR");
         $builder
-            ->add('name',                                        TextType::class)
-            ->add('forename',                                    TextType::class)
-            ->add('birthdate',BirthdayType::class,array('placeholder' => 'Select a value'))
-            ->add('slot',        CheckboxType::class, array('required' => false))
-            ->add('bookedday', DateType::class, array('widget' => 'single_text'))
-            ->add('country',                                  CountryType::class)
-            ->add('specialrate', CheckboxType::class, array('required' => false));
+            ->add('name',TextType::class, array('label' => 'Nom'))
+            ->add('forename',  TextType::class,array('label' => 'Prénom'))
+            ->add('birthdate',BirthdayType::class,array('placeholder' => 'Select a value','label' => 'Date de naissance'))
+            ->add('slot',        CheckboxType::class, array('required' => false,'label' =>'Demi-journée'))
+            ->add('bookedday', DateType::class, array('widget' => 'single_text','label' =>'Date de visite'))
+            ->add('country',   CountryType::class,array('label' => 'Pays'))
+            ->add('specialrate', CheckboxType::class, array('required' => false,'label' => 'Tarif réduit'));
 
     }
     

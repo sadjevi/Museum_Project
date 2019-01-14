@@ -5,6 +5,7 @@ namespace SA\MuseumBundle\Services;
 
 
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Null_;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Entity\Booking;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,13 +21,14 @@ class BookingManager
 
 
     private $em;
+    CONST limit = 3;
 
     public function __construct(EntityManagerInterface $entityManager = null)
     {
         $this->em = $entityManager;
     }
 
-    public function isValid(booking $booking)
+    public function isValid(request $request, booking $booking)
     {
         $tickets  = $booking->getTickets();
         $total    = 0;
@@ -35,12 +37,20 @@ class BookingManager
         {
             $em         = $this->em;
             $bookedday  = $ticket->getBookedday();
+            $dayBooked  = $bookedday->format('d/m/Y');
             $myTickets  = $em->getRepository('SAMuseumBundle:Ticket')->findby(array('bookedday' => $bookedday));
             $ticketsNbr = count($myTickets);
 
             if ($this->isFull($ticketsNbr))
             {
-                throw new Exception('il est impossible de reserver à la date selectionnée');
+                 $request->getSession()->getFlashbag()->add(
+                     'warning',
+                     'Musée complet ! Pour votre confort les visites sont limitées à 1000 visiteurs /jour...
+                     le musée affichant complet le ' . $dayBooked .' merci de bien vouloir selectionner une
+                     autre date ');
+                // return null;
+                return null;
+
             }
 
             $myAge  = $this->getAge($ticket);
@@ -63,7 +73,7 @@ class BookingManager
     public function isFull($ticketsNbr)
     {
 
-        return $ticketsNbr >= 3;
+        return $ticketsNbr >= SELF::limit;
     }
 
     public function getAge(ticket $ticket)

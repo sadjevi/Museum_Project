@@ -42,16 +42,17 @@ class OrderController extends Controller
                 "amount" => $rate  , // Amount in cents
                 "currency" => "eur",
                 "source" => $token,
-                "description" => "Reservation - Louvre_Munseum"
+                "description" => "Reservation - Louvre_Museum"
             ));
-            $this->addFlash('info', "success","Bravo ça marche !");
+            $this->addFlash('success', "Paiement accepté!");
             return $this->redirectToRoute("museum_mailsend", array('id' => $booking->getId()));
 
         } catch(\Stripe\Error\Card $e)
 
             {
 
-                $this->addFlash('info', "error","Snif ça marche pas :(");
+                $this->addFlash('warning', "Désolé, il y a eu un problème avec votre règlement,
+                merci de recommencer");
                 return $this->redirectToRoute("museum_tickets_order");
                 // The card has been declined
             }

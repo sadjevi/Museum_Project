@@ -1,10 +1,18 @@
 {% extends "::layout.html.twig" %}
 
+
+
 {% block title %}
     Confirmation  - {{ parent() }}
 {% endblock %}
 
 {% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <h3>Votre commande est confirmée</strong></h3>
     <div style="height:100px"></div>
 
