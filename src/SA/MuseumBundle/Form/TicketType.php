@@ -21,12 +21,12 @@ class TicketType extends AbstractType
     {
         setlocale(LC_TIME, "fr_FR");
         $builder
-            ->add('name',TextType::class, array('label' => 'Nom'))
-            ->add('forename',  TextType::class,array('label' => 'Prénom'))
-            ->add('birthdate',BirthdayType::class,array('placeholder' => 'Select a value','label' => 'Date de naissance'))
+            ->add('name',            TextType::class, array('label' => 'Nom'))
+            ->add('forename',        TextType::class, array('label' => 'Prénom'))
+            ->add('birthdate',   BirthdayType::class, array('placeholder' => 'Select a value','label' => 'Date de naissance'))
             ->add('slot',        CheckboxType::class, array('required' => false,'label' =>'Demi-journée'))
-            ->add('bookedday', DateType::class, array('widget' => 'single_text','label' =>'Date de visite'))
-            ->add('country',   CountryType::class,array('label' => 'Pays'))
+            ->add('bookedday',       DateType::class, array('widget' => 'single_text','label' =>'Date de visite'))
+            ->add('country',      CountryType::class, array('label' => 'Pays'))
             ->add('specialrate', CheckboxType::class, array('required' => false,'label' => 'Tarif réduit'));
 
     }

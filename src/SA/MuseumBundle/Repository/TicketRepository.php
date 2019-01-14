@@ -13,16 +13,5 @@ use Doctrine\ORM\QueryBuilder;
  */
 class TicketRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function TicketsNbrByDate($bookedday)
-    {
-        $qb = $this->createQueryBuilder('t');
-        $qb->where('t.bookedday = :bookedday')
-           ->setParameter('bookedday', $bookedday);
 
-        $value = $qb
-            ->getQuery()
-            ->getSingleScalarResult();
-
-        return $value;
-    }
 }

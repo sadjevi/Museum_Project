@@ -28,9 +28,9 @@
         {% for ticket in listTickets %}
 
             -la {% if ticket.Slot == 1  %}
-                    journée
-                {% else %}
                     demi journée
+                {% else %}
+                    journée
                 {% endif %}
             du {{ ticket.Bookedday|date('d/m/Y') }} <br/>
 

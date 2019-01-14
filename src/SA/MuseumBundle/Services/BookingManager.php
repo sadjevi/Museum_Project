@@ -5,14 +5,10 @@ namespace SA\MuseumBundle\Services;
 
 
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\Null_;
 use SA\MuseumBundle\Entity\Ticket;
 use SA\MuseumBundle\Entity\Booking;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use DateTime;
-use Doctrine\ORM\EntityManager;
 
 
 
@@ -46,7 +42,7 @@ class BookingManager
                  $request->getSession()->getFlashbag()->add(
                      'warning',
                      'Musée complet ! Pour votre confort les visites sont limitées à 1000 visiteurs /jour...
-                     le musée affichant complet le ' . $dayBooked .' merci de bien vouloir selectionner une
+                     le musée affichant complet le ' . $dayBooked .' merci de bien vouloir sélectionner une
                      autre date ');
                 // return null;
                 return null;
