@@ -14,7 +14,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class BookingManagerTest extends WebTestCase
+class BookingManagerTest extends TestCase
 {
 
     public function testRateIfAgeIsUnder4()

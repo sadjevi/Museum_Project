@@ -19,4 +19,9 @@ class DefaultController extends Controller
         return $this->render('SAMuseumBundle:Default:infos.html.twig');
 
     }
+
+    public function legalNoticeAction()
+    {
+        return $this->render('SAMuseumBundle:Default:legalnotice.html.twig');
+    }
 }

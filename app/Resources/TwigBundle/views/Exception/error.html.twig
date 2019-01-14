@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+erreur  - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h3><strong>désolé, il y a eu problème </strong></h3>
+
+
+    {% block projectmuseum_body %}
+
+        <div class="jumbotron">
+
+            <p> {{ status_text }}</p>
+            <hr class="my-4">
+
+                <a class="btn btn-primary btn-lg" href="{{ path('sa_museum_add') }}" role="button">Retour à la réservation</a>
+        </div>
+
+
+    {% endblock %}
+
+{% endblock %}

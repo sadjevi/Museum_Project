@@ -4,10 +4,73 @@
     {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
 
 
-   {{ form_row(form.tickets) }}
+    {{ form_row(form.tickets) }}
+
+
+    <div class="form-group" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e('html_attr') }}">
+
+        {% for ticket in form.tickets %}
+            {# Génération du label. #}
+            {{ form_label((form.ticket.vars.prototype.name)|e("Nom") ) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors((form.ticket.vars.prototype.name)|e) }}
+
+            <div class="col-sm-10">
+                {# Génération de l'input. #}
+                {{ form_widget((form.ticket.vars.prototype.name)|e, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+
+
+
 
 
     <a href="#" id="add_ticket" class="btn btn-info">Ajouter un billet</a>
+
+    <div class="form-group">
+        {# Génération du label. #}
+        {{ form_label(form.bookedat, "Commande effectué le ", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.bookedat) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.bookedat, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {# Génération du label. #}
+        {{ form_label(form.ticketsnbr, "Merci de confirmer le nombre de billets réservés ", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.ticketsnbr) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.ticketsnbr, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {# Génération du label. #}
+        {{ form_label(form.mail, "Merci d'indiquer votre adresse mail", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.mail) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
 
     {# ... #}
     {# Génération automatique des champs pas encore écrits.

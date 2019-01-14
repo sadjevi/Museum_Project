@@ -31,6 +31,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use SendGrid;
 use SA\MuseumBundle\Birthday;
+use vendor\project\StatusTest;
 
 
 class BookingController extends Controller
@@ -69,6 +70,7 @@ class BookingController extends Controller
 
 
             $request->getSession()->getFlashbag()->add('notice', 'Reservation bien enregistrée.');
+            $request->get('session')->getFlashbag($book)->add('notice', 'Reservation bien enregistrée.');
            // $this->mailAction($id);
 
             return $this->redirectToRoute('sa_museum_view', array('id' => $booking->getId()));
@@ -83,14 +85,16 @@ class BookingController extends Controller
         $booking      = $em->getRepository('SAMuseumBundle:Booking')->find($id);
         $listTickets  = $em->getRepository('SAMuseumBundle:Ticket')->findBy(array('booking' => $booking));
         $message      = (new \Swift_Message('Confirmation de reservation'));
+        $img     = $message->embed(\Swift_Image::fromPath('bundles/samuseum/images/téléchargement.jpeg'));
         $message
             ->setFrom('devmail@louvremuseum.com')
-            ->setTo('dev@ivejdas.com')
+            ->setTo('sadjevi@me.com')
             ->setSubject('Votre reservation au Musée du Louvre')
             ->setBody($this->renderView('Email/mail.html.twig',
                 array(
                     'booking'        => $booking,
-                    'listTickets'    => $listTickets)),'text/html');
+                    'listTickets'    => $listTickets,
+                    'img' => $img)),'text/html');
 
         $this->get('mailer')->send($message);
 

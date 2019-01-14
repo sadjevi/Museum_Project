@@ -33,6 +33,7 @@
         "twig/twig": "^1.0||^2.0",
         "stripe/stripe-php": "3.*",
         "andegna/calender":"~2.1",
+        "coresphere/console-bundle": "~0.5",
         "fisharebest/ext-calendar": "~2.5"
 
     },

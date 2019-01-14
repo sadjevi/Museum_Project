@@ -38,14 +38,20 @@ class Booking
      * @var int
      *
      * @ORM\Column(name="ticketsnbr", type="integer")
-     * @Assert\Type(type="integer")
+     *
+     * @Assert\Type(
+     *     type    ="integer",
+     *     message = "le chiffre  {{ value }} n 'est pas valide."
+     * )
+     *
      */
-    private $ticketsnbr;
+    protected $ticketsnbr;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="rate", type="float")
+     * @ORM\Column(name ="rate", type="float")
+     * @Assert\Type(type="float")
      */
     private $rate;
 
@@ -53,8 +59,8 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Email
+     * @Assert\NotBlank(message = "Ce champ doit être rempli.")
+     * @Assert\Email(message= "l'adresse  {{ value }} n 'est pas une adresse mail valide.")
      */
     private $mail;
 

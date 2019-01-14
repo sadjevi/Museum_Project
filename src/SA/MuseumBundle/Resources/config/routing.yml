@@ -49,3 +49,8 @@ museum_test:
     defaults:
         _controller: SAMuseumBundle:Booking:test
 
+museum_ln:
+    path:    /Mentions Legales
+    defaults:
+        _controller: SAMuseumBundle:Default:legalNotice
+

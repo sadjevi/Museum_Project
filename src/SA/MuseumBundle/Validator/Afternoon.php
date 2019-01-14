@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
 
 Class Afternoon extends Constraint
 {
-    public $message = "il n'est plus possible de reserver un billet journée aujourdh'ui";
+    public $message = " Désolé il n'est plus possible de réserver un billet journée aujourd'hui";
 
     public function getTargets()
     {

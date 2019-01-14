@@ -7,7 +7,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use SA\MuseumBundle\Validator\Dayoff;
 use SA\MuseumBundle\Validator\Afternoon;
-use SA\MuseumBundle\Validator\Full;
 use SA\MuseumBundle\Validator\Holiday;
 
 
@@ -43,7 +42,12 @@ class Ticket
      *
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Length(min=2)
+     * @Assert\Length(
+     *     min =2,
+     *     max = 15,
+     *     minMessage = "Le nom doit contenir un minimum de {{ limit }} caractères",
+     *     maxMessage = "Le nom ne peut contenir plus de {{ limit }} caractères"
+     *     )
      */
     private $name;
 
@@ -51,8 +55,13 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="forename", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=2)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 15,
+     *     minMessage = "Le prénom doit contenir un minimum de {{ limit }} caractères",
+     *     maxMessage = "Le prénom ne peut contenir plus de {{ limit }} caractères"
+     *     )
      */
     private $forename;
 
@@ -60,7 +69,8 @@ class Ticket
      *  @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="datetime")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message = "Ce champ doit être rempli.")
+     * @Assert\Date()
      */
     private $birthdate;
 
@@ -68,7 +78,10 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message = "Ce champ doit être rempli.")
+     * @Assert\Country(
+     *     message = "{{ value }} n'est pas un pays valide"
+     *     )
      */
     private $country;
 
@@ -76,6 +89,7 @@ class Ticket
      * @var bool
      *
      * @ORM\Column(name="slot", type="boolean")
+     * @Assert\Type("boolean")
      *
      */
     private $slot ;
@@ -88,7 +102,7 @@ class Ticket
      * @Assert\Range(
      *      min = "now - 1 day",
      *      max = "first day of December next year",
-     *      minMessage = "vuos ne pouvez rentrer une date anterieur à aujourdh'ui,merci de saisir une autre date",
+     *      minMessage = "vous ne pouvez rentrer une date anterieur à aujourdh'ui,merci de saisir une autre date",
      *      maxMessage = "il est impossible de reserver une date posterieure au  {{ limit }}.Merci de bien vouloir selectionner une autre date"
      * )
      *
@@ -100,6 +114,7 @@ class Ticket
      * @var bool
      *
      * @ORM\Column(name="specialrate", type="boolean")
+     * @Assert\Type("boolean")
      */
     private $specialrate = true;
 
@@ -108,6 +123,7 @@ class Ticket
      * @var float
      *
      * @ORM\Column(name="rate", type="float")
+     * @Assert\Type(type="float")
      *
      */
     private $rate;

@@ -3,6 +3,8 @@
 
 {% block body %}
 
+
+
 <head>
         <meta charset="utf-8">
         <title>{% block title %}LOUVRE MUSEUM{% endblock %}</title>
@@ -15,8 +17,11 @@
 
 
         <div class="jumbotron">
-                <h2 class="display-3">Confirmation de Réservation</h2>
-                <p class="lead">Bonjour, Nous avons bien enregistré votre commande et nous vous remercions.<br>
+                <img src="{{ img }}" width="300" border="0" alt="logo_du_louvre">
+
+                <hr class="my-4">
+                <p class="lead">Bonjour,<br>
+                        Nous avons bien enregistré votre commande et nous vous remercions.<br>
                 Ce mail faisant office de billet, nous vous prions de bien vouloir l 'imprimer afin de le présenter
                 à l'entrée du musée</p>
 
@@ -40,7 +45,7 @@
 <div style="height:50px"></div>
 
 {% for ticket in listTickets %}
-        {% dump ticket %}
+
         <div class="card text-white bg-success mb-3" style="max-width: 500rem;">
                 <div class="card-header">
                         Ref: {{ ticket.Bookedday|date('d/m/Y') }}{{ ticket.Id }} <br/>

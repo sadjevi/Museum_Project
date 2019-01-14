@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
 
 Class Dayoff extends Constraint
 {
-    public $message = "il est impossible d 'éffectuer une reservation le jour selectionné,merci de selectionner
+    public $message = "Le musée est malheureusement fermé le jour sélectionné ,merci de réserver
     un autre jour.";
 
 
